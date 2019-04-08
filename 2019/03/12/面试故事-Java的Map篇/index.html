@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.0.1" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言在面试与被面之间游荡，把面试作为一项事情来做。 营养早餐HashMap、Hashtable和TreeMap的区别 都实现了Map接口，（Key，Value）元组存储逻辑概念，内部采用Hash（rehash）算法提供高效的访问速度。 Hash的计算依赖于Key的hashCode和equals实现。 HashMap允许null作为Key和Value出现，而Hashtable不允许，对于null键值">
+<meta name="keywords" content="Java,笔试,面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试故事-Java的Map篇">
+<meta property="og:url" content="http://dragonetail.github.io/2019/03/12/面试故事-Java的Map篇/index.html">
+<meta property="og:site_name" content="微笑卡卡西">
+<meta property="og:description" content="前言在面试与被面之间游荡，把面试作为一项事情来做。 营养早餐HashMap、Hashtable和TreeMap的区别 都实现了Map接口，（Key，Value）元组存储逻辑概念，内部采用Hash（rehash）算法提供高效的访问速度。 Hash的计算依赖于Key的hashCode和equals实现。 HashMap允许null作为Key和Value出现，而Hashtable不允许，对于null键值">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-08T00:59:19.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试故事-Java的Map篇">
+<meta name="twitter:description" content="前言在面试与被面之间游荡，把面试作为一项事情来做。 营养早餐HashMap、Hashtable和TreeMap的区别 都实现了Map接口，（Key，Value）元组存储逻辑概念，内部采用Hash（rehash）算法提供高效的访问速度。 Hash的计算依赖于Key的hashCode和equals实现。 HashMap允许null作为Key和Value出现，而Hashtable不允许，对于null键值">
+
+
+
+
+
+
+  <link rel="canonical" href="http://dragonetail.github.io/2019/03/12/面试故事-Java的Map篇/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面试故事-Java的Map篇 | 微笑卡卡西</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">微笑卡卡西</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">~黑哈瑞之家~</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/12/面试故事-Java的Map篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">面试故事-Java的Map篇
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 11:23:56" itemprop="dateCreated datePublished" datetime="2019-03-12T11:23:56+08:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在面试与被面之间游荡，把面试作为一项事情来做。</p>
+<h1 id="营养早餐"><a href="#营养早餐" class="headerlink" title="营养早餐"></a>营养早餐</h1><h2 id="HashMap、Hashtable和TreeMap的区别"><a href="#HashMap、Hashtable和TreeMap的区别" class="headerlink" title="HashMap、Hashtable和TreeMap的区别"></a>HashMap、Hashtable和TreeMap的区别</h2><ol>
+<li>都实现了Map接口，（Key，Value）元组存储逻辑概念，内部采用Hash（rehash）算法提供高效的访问速度。</li>
+<li>Hash的计算依赖于Key的hashCode和equals实现。</li>
+<li>HashMap允许null作为Key和Value出现，而Hashtable不允许，对于null键值会抛异常。（补充HashMap的null键值对应的value会被存储到内部条目Array的0位，业务层面可以作为默认值的用途来使用，个人意见是不建议使用，使用业务含义清晰的Key常量作为默认值也许会是更好的选择）。</li>
+<li>Hashtable的方法是线程安全的，内部方法之间使用Synchronized同步保护；而HashMap和TreeMap需要使用者自己保障线程安全机制。</li>
+<li>因为线程机制的原因，Hashmap的操作会比Hashtable更高效一些（对于Web环境编程的小白来说，正常业务上，建议直接使用Hashtable，除非遇到性能集中爆发的地方，再考虑HashMap吧。补充，Java5提供了一个ConcurrentHashMap，没有太多调查和详细对比，从JDK的API文档来看，是建议使用这个类替代Hashtable的）。</li>
+<li>Hashtable和HashMap的iterator、keySet()、values()都是（类）视图方式返回，即fail-fast模式，这种模式下，除非用返回对象直接remove来变更Map，其他方式或进程对Map的修改，都会在下一次hasNext或者next方法的时候（有可能会）触发<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html" target="_blank" rel="noopener">ConcurrentModificationException</a>。Hashtable提供的keys()和elements()返回的<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html" target="_blank" rel="noopener">Enumeration</a>不是fail-fast模式的视图化操作模式，是clone模式。</li>
+<li>迭代访问数据的顺序时，HashMap和Hashtable不保证数据的顺序，并且不能保证数据顺序根据时间保持不变；TreeMap能够根据键值的比较器迭代访问整个条目。</li>
+<li>对于TreeMap，如果比较器不允许空值，使用null的Key会引发异常。</li>
+<li>三个详细比较</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">                 | HashMap | Hashtable | TreeMap</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">iteration order  | no      | no        | yes</span><br><span class="line">null key-value   | yes-yes | no-no     | no-yes</span><br><span class="line">synchronized     | no      | yes       | no</span><br><span class="line">time performance | O(1)    | O(1)      | O(log n)</span><br><span class="line">implementation   | buckets | buckets   | red-black tree</span><br></pre></td></tr></table></figure>
+<h2 id="fail-fast与fail-safe"><a href="#fail-fast与fail-safe" class="headerlink" title="fail-fast与fail-safe"></a>fail-fast与fail-safe</h2><ol>
+<li>这是对Java的Collections相关类的操作接口的一个实现和使用概念；</li>
+<li>白话来说，fail-fast是以View（视图）的模式对原有Collection数据的访问，这个时候除了直接用View（通常是Iterator接口）进行remove对象，其他方式对原有Collection的增删改都可能会触ConcurrentModificationException](<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html)。" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html)。</a></li>
+<li>而fail-safe则不是以View模式，而是以Clone模式。</li>
+<li>fail-fast能够访问到最新的数据内容；fail-safe只能访问到clone时点的数据。</li>
+<li>fail-fast通过算法框架控制访问，没有空间需求；fail-safe会clone数据，有空间需求，对于大的数据集合，需要注意。</li>
+<li>简单的来说java.util下面的Collection对象都是使用fail-fast模式（不完全准确，个别特殊接口除外，例如Hashtable的keys()和elements()接口），常见例如：HashMap、Vector、ArrayList、HashSet；java.util.concurrent包下都是用fail-safe模式，例如：CopyOnWriteArrayList、ConcurrentHashMap。</li>
+</ol>
+<h2 id="红黑树（Red-black-Tree）"><a href="#红黑树（Red-black-Tree）" class="headerlink" title="红黑树（Red-black Tree）"></a>红黑树（Red-black Tree）</h2><p>红黑树（Red–black tree）同AVL（根据发明者Adelson-Velsky 和 Landis命名）都是一种<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91" target="_blank" rel="noopener">自平衡二叉查找树</a>，都对插入时间、删除时间和查找时间提供了最好可能的最坏情况担保。除了O(log n)的时间之外，红黑树的持久版本对每次插入或删除需要 O(log n)的空间。</p>
+<p>红黑树的特点：</p>
+<ul>
+<li>节点是红色或黑色。</li>
+<li>根是黑色。</li>
+<li>所有叶子都是黑色（叶子是NIL节点）。</li>
+<li>每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）</li>
+<li>从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</li>
+</ul>
+<p>这些约束确保了红黑树的关键特性：从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。结果是这个树大致上是平衡的。因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。</p>
+<h2 id="Map相关常用操作"><a href="#Map相关常用操作" class="headerlink" title="Map相关常用操作"></a>Map相关常用操作</h2><p>遍历数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Entry entry: map.entrySet()) &#123;</span><br><span class="line">  <span class="comment">// get key</span></span><br><span class="line">  K key = entry.getKey();</span><br><span class="line">  <span class="comment">// get value</span></span><br><span class="line">  V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Iterator itr = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) &#123;</span><br><span class="line">  Entry entry = itr.next();</span><br><span class="line">  <span class="comment">// get key</span></span><br><span class="line">  K key = entry.getKey();</span><br><span class="line">  <span class="comment">// get value</span></span><br><span class="line">  V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据Key排序（需要业务保障Key不能出现null）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> e1.getKey().compareTo(e2.getKey());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用TreeMap排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SortedMap sortedMap = <span class="keyword">new</span> TreeMap(<span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(K k1, K k2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> k1.compareTo(k2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortedMap.putAll(map);</span><br></pre></td></tr></table></figure>
+<p>根据Value进行排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> e1.getValue().compareTo(e2.getValue());</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>静态Map</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map map;  <span class="comment">//并能真的内容静态，使用的代码仍然能够使用put方法操作Map对象的内容</span></span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    map.put(<span class="number">1</span>, <span class="string">"one"</span>);</span><br><span class="line">    map.put(<span class="number">2</span>, <span class="string">"two"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map map;</span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    Map aMap = <span class="keyword">new</span> HashMap();</span><br><span class="line">    aMap.put(<span class="number">1</span>, <span class="string">"one"</span>);</span><br><span class="line">    aMap.put(<span class="number">2</span>, <span class="string">"two"</span>);</span><br><span class="line">    map = Collections.unmodifiableMap(aMap);  <span class="comment">//固化保护Map的内容是静态</span></span><br><span class="line">    						<span class="comment">//如果使用put方法，将会抛出UnsupportedOperationException</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双向映射Map"><a href="#双向映射Map" class="headerlink" title="双向映射Map"></a>双向映射Map</h2><p>有时，我们需要一组键对，互相映射，允许通过Key查找，也允许通过Value“反向查找”。JDK不支持双向映射，需要使用两个Map对象来进行保存和处理。</p>
+<p>Apache Common Collections 和 Guava 的 <a href="https://commons.apache.org/proper/commons-collections/javadocs/api-3.2.1/org/apache/commons/collections/BidiMap.html" target="_blank" rel="noopener"><strong>BidiMap</strong></a>and <a href="https://guava-libraries.googlecode.com/svn/tags/release09/javadoc/com/google/common/collect/BiMap.html" target="_blank" rel="noopener"><strong>BiMap</strong></a>都实现了这类功能。</p>
+<h2 id="Map拷贝"><a href="#Map拷贝" class="headerlink" title="Map拷贝"></a>Map拷贝</h2><p>多数Map实现类都实现了使用构造方法，传入另外一个Collection对象来实现数据的内容的复制，但是这个复制不是同步的，会出现上面的fail-fast问题（<font color="red">TODO 需要探究或验证</font>）。</p>
+<p>正确的用法是使用Collections.synchronizedMap()。</p>
+<h2 id="空Map"><a href="#空Map" class="headerlink" title="空Map"></a>空Map</h2><p>很少会有需要，但是某个时候调用一些接口需要Map，但是不需要数据的时候创建一个空Map也是需要的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map = Collections.emptyMap();  <span class="comment">//返回的是内容也不可变的Map</span></span><br><span class="line"></span><br><span class="line">map = <span class="keyword">new</span> HashMap();</span><br></pre></td></tr></table></figure>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a><a href="https://www.programcreek.com/2013/03/hashmap-vs-treemap-vs-hashtable-vs-linkedhashmap/" target="_blank" rel="noopener">LinkedHashMap</a></h2><ol start="7">
+<li><p>同TreeMap和HashMap一样，特殊的是其迭代顺序是其插入的顺序；并且根据这个<a href="https://www.baeldung.com/java-linked-hashmap" target="_blank" rel="noopener">博客</a>来看，每次通过Get操作访问其内的元素，会把其访问的元素放到最尾的地方，改变迭代的顺序（<font color="red">如下示例验证</font>）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.util.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashMapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> LinkedHashMap&lt;Integer, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(<span class="number">16</span>, .<span class="number">75f</span>, <span class="keyword">true</span>);</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">2</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">3</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">4</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> Set&lt;Integer&gt; keys = map.keySet();</span><br><span class="line">        Assert.isTrue(<span class="string">"[1, 2, 3, 4, 5]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">4</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[1, 2, 3, 5, 4]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">1</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[2, 3, 5, 4, 1]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">3</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[2, 5, 4, 1, 3]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"OK"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其时间复杂度，同HashMap一样，内部使用buckets实现，但是其迭代的时间复杂度因为有Link的存在，仅与其元素个数有关，而HashMap的迭代时间复杂度跟其容量有关。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/笔试/" rel="tag"># 笔试</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/07/Spring-JWT实现微服务集群/" rel="next" title="Spring+JWT实现微服务集群">
+                <i class="fa fa-chevron-left"></i> Spring+JWT实现微服务集群
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/07/Flutter的Bloc工程化系列1/" rel="prev" title="Flutter的Bloc工程化系列1">
+                Flutter的Bloc工程化系列1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blackharry1.png" alt="黑哈">
+            
+              <p class="site-author-name" itemprop="name">黑哈</p>
+              <div class="site-description motion-element" itemprop="description">~黑哈等你回家~</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dragonetail" title="GitHub &rarr; https://github.com/dragonetail" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#营养早餐"><span class="nav-number">2.</span> <span class="nav-text">营养早餐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap、Hashtable和TreeMap的区别"><span class="nav-number">2.1.</span> <span class="nav-text">HashMap、Hashtable和TreeMap的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fail-fast与fail-safe"><span class="nav-number">2.2.</span> <span class="nav-text">fail-fast与fail-safe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树（Red-black-Tree）"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树（Red-black Tree）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map相关常用操作"><span class="nav-number">2.4.</span> <span class="nav-text">Map相关常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向映射Map"><span class="nav-number">2.5.</span> <span class="nav-text">双向映射Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map拷贝"><span class="nav-number">2.6.</span> <span class="nav-text">Map拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空Map"><span class="nav-number">2.7.</span> <span class="nav-text">空Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">2.8.</span> <span class="nav-text">LinkedHashMap</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑哈</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

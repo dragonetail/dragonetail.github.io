@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.0.1" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="~黑哈等你回家~">
+<meta name="keywords" content="Spring Java Swift Openstack Docker Go Python Antd ReactJS">
+<meta property="og:type" content="website">
+<meta property="og:title" content="微笑卡卡西">
+<meta property="og:url" content="http://dragonetail.github.io/index.html">
+<meta property="og:site_name" content="微笑卡卡西">
+<meta property="og:description" content="~黑哈等你回家~">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微笑卡卡西">
+<meta name="twitter:description" content="~黑哈等你回家~">
+
+
+
+
+
+
+  <link rel="canonical" href="http://dragonetail.github.io/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>微笑卡卡西</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">微笑卡卡西</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">~黑哈瑞之家~</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/04/08/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-08 08:59:19" itemprop="dateCreated datePublished" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/04/07/Flutter的Bloc工程化系列1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/07/Flutter的Bloc工程化系列1/" class="post-title-link" itemprop="url">Flutter的Bloc工程化系列1</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-07 23:08:33" itemprop="dateCreated datePublished" datetime="2019-04-07T23:08:33+08:00">2019-04-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/APP编程/" itemprop="url" rel="index"><span itemprop="name">APP编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="BLOC重构Counter实现（Flutter的Bloc工程化系列1）"><a href="#BLOC重构Counter实现（Flutter的Bloc工程化系列1）" class="headerlink" title="BLOC重构Counter实现（Flutter的Bloc工程化系列1）"></a>BLOC重构Counter实现（Flutter的Bloc工程化系列1）</h1><p><strong>说明：</strong> 本部分完成部分在分支： <a href="https://github.com/dragonetail/flutterpoc/tree/counter_refactor" target="_blank" rel="noopener">https://github.com/dragonetail/flutterpoc/tree/counter_refactor</a></p>
+<p><strong>目标：</strong> 根据Flutter缺省计数器例子，遵循Bloc的理念实现增减计数器的逻辑和视图分离。</p>
+<ol>
+<li><p>使用fluter命令创建APP，然后在pubspec.yaml中追加依赖</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cupertino_icons:</span> <span class="string">^0.1.2</span></span><br><span class="line"><span class="attr">flutter_bloc:</span> <span class="string">^0.9.1</span></span><br><span class="line"><span class="attr">meta:</span> <span class="string">"&gt;=1.1.6 &lt;2.0.0"</span></span><br><span class="line"><span class="attr">equatable:</span> <span class="string">^0.2.0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>环境准备，使用vscode，安装bloc的插件辅助代码生成。<br>参考： <a href="https://felangel.github.io/bloc/#/blocvscodeextension&gt;" target="_blank" rel="noopener">https://felangel.github.io/bloc/#/blocvscodeextension&gt;</a><br>直接用这个链接安装： <a href="https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc</a></p>
+</li>
+<li><p>创建目录结构：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lib</span><br><span class="line">  blocs  #BLOC逻辑代码</span><br><span class="line">  pages  #页面代码</span><br><span class="line">  widgets  #组件代码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在blocs目录下面上右键菜单【Bloc： new bloc】（第二部插件提供功能），输入bloc名字为counter，将创建如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">blocs</span><br><span class="line">  bloc  # 需要手工更改为counter</span><br><span class="line">    bloc.dart               </span><br><span class="line">    counter_bloc.dart       </span><br><span class="line">    counter_event.dart      </span><br><span class="line">    counter_state.dart</span><br></pre></td></tr></table></figure>
+<p>更改生成的bloc目录为counter</p>
+</li>
+<li><p>在blocs下面创建blocs.dart和simple_bloc_delegate.dart，结果文件列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">blocs</span><br><span class="line">  counter  </span><br><span class="line">    bloc.dart               </span><br><span class="line">    counter_bloc.dart       </span><br><span class="line">    counter_event.dart      </span><br><span class="line">    counter_state.dart</span><br><span class="line">  blocs.dart</span><br><span class="line">  simple_bloc_delegate.dart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>counter目录下面生成的文件内容和修改结果：</p>
+<ul>
+<li>首先是package的索引，bloc.dart，是当前目录下面内容的export索引文件。内容：</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">'counter_bloc.dart'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="string">'counter_event.dart'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="string">'counter_state.dart'</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>事件counter_event.dart文件，为计数器业务逻辑的事物定义。根据Bloc官网资料<a href="https://felangel.github.io/bloc/#/fluttercountertutorial" target="_blank" rel="noopener">https://felangel.github.io/bloc/#/fluttercountertutorial</a>的做法看，可以简单使用Enum来实现Event定义，使用int实现state的处理。作为工程化探讨，这里使用标准的Bloc做法进行处理。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:equatable/equatable.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:meta/meta.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterEvent</span> <span class="keyword">extends</span> <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">  CounterEvent([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IncrementEvent</span> <span class="keyword">extends</span> <span class="title">CounterEvent</span> </span>&#123;</span><br><span class="line">  IncrementEvent() : <span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() =&gt; <span class="string">'IncrementEvent'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecrementEvent</span> <span class="keyword">extends</span> <span class="title">CounterEvent</span> </span>&#123;</span><br><span class="line">  DecrementEvent() : <span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() =&gt; <span class="string">'DecrementEvent '</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个地方使用了增强Equatable组件，Bloc官网没有说明，应该属于增强组件相等性判断的实现，暂不追究原理。</p>
+<p>根据Bloc的模板，首先实现了一个抽象类，这个抽象类声明了【@immutable】，则其所有子类都不可变更，即不能有可变的成员变量（表达某种特定事件实例的含义）。</p>
+<p>上面例子，通过实例化实现了两个Event类型，IncrementEvent和DecrementEvent。</p>
+<p>【最佳实践】查看了Bloc的其他示例，这个地方规约没有统一化，建议所有的Event实例类都以Event结尾。</p>
+</li>
+<li><p>计数器状态控制counter_state.dart：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:equatable/equatable.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:meta/meta.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterState</span> <span class="keyword">extends</span> <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">  CounterState([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountingState</span> <span class="keyword">extends</span> <span class="title">CounterState</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">int</span> counter;</span><br><span class="line"></span><br><span class="line">  CountingState(<span class="keyword">this</span>.counter) : <span class="keyword">super</span>([counter]);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'CountingState &#123; counter: <span class="subst">$counter</span> &#125;'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同Event，state的实现也基本一样，通过【@immutable】约束了所有State类为不可变（表达某种特定状态实例的含义）。</p>
+<p>上面例子，实例化实现了一个状态CountingState，表达了技术过程中的某一时刻的状态，其有一个成员变量counter表示计数器的状态，通过构造函数初始化，不可改变。</p>
+<p>【最佳实践】所有状态实例类以State结尾。</p>
+<p>【其他】同Swift语言一样，Dart语言也依赖变量直接暴露出来进行数据交互，不使用setter和getter方法。</p>
+</li>
+<li><p>业务逻辑counter_bloc.dart实现：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:bloc/bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./bloc.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CounterBloc</span> <span class="keyword">extends</span> <span class="title">Bloc</span>&lt;<span class="title">CounterEvent</span>, <span class="title">CounterState</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  CounterState <span class="keyword">get</span> initialState =&gt; CountingState(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Stream&lt;CounterState&gt; mapEventToState(</span><br><span class="line">    CounterEvent event,</span><br><span class="line">  ) <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">if</span> (event <span class="keyword">is</span> IncrementEvent) &#123;</span><br><span class="line">      <span class="keyword">yield</span>* _mapIncrementEventToState();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event <span class="keyword">is</span> DecrementEvent) &#123;</span><br><span class="line">      <span class="keyword">yield</span>* _mapDecrementEventState(event);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stream&lt;CountingState&gt; _mapIncrementEventToState() <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">yield</span> CountingState((currentState <span class="keyword">as</span> CountingState).counter + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stream&lt;CountingState&gt; _mapDecrementEventState(DecrementEvent event) <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">yield</span> CountingState((currentState <span class="keyword">as</span> CountingState).counter - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先需要通过重载实现initialState的实现，Bloc框架会实现当前bloc的状态，通过变量currentState访问。</p>
+<p>业务逻辑主要放到mapEventToState进行处理，根据Bloc的实践例子，这个地方主要是通过event类型进行判断，调用不同的本地私有map函数进行分类处理。</p>
+<p>mapEventToState的返回类型是<code>Stream&lt;State&gt;</code>类型，表达状态流。</p>
+</li>
+</ul>
+</li>
+<li><p>blocs下面blocs.dart和simple_bloc_delegate.dart：</p>
+<ul>
+<li><p>blocs.dart是export索引。</p>
+</li>
+<li><p>simple_bloc_delegate.dart是根据官网示例对Bloc的默认delegate进行扩展，追加Debug日志功能：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:bloc/bloc.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleBlocDelegate</span> <span class="keyword">extends</span> <span class="title">BlocDelegate</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> onTransition(Transition transition) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onTransition(transition);</span><br><span class="line">    <span class="built_in">print</span>(transition);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> onError(<span class="built_in">Object</span> error, StackTrace stacktrace) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onError(error, stacktrace);</span><br><span class="line">    <span class="built_in">print</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了这个，需要在APP启动时在main.dart中进行设定使用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  BlocSupervisor().delegate = SimpleBlocDelegate();</span><br><span class="line"></span><br><span class="line">  runApp(MyApp());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>改写MyHomePage：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter_bloc/flutter_bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/pages/pages.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/blocs/blocs.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  MyHomePage(&#123;Key key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyHomePageState createState() =&gt; _MyHomePageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> CounterBloc _counterBloc = CounterBloc();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: BlocProvider&lt;CounterBloc&gt;(</span><br><span class="line">        bloc: _counterBloc,</span><br><span class="line">        child: CounterPage(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>沿用缺省示例生成的StatefulWidget，并在State中定义了CounterBloc，然后再body处使用BlocProvider把        【bloc: _counterBloc】注入（DI）到Bloc的context中，然后在CounterPage中使用<code>final CounterBloc _counterBloc = BlocProvider.of&lt;CounterBloc&gt;(context);</code>可以获取之前注入的bloc变量。</p>
+</li>
+<li><p>页面CounterPage的实现：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter_bloc/flutter_bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/blocs/blocs.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/widgets/widgets.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CounterPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> CounterBloc _counterBloc = BlocProvider.of&lt;CounterBloc&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: BlocBuilder&lt;CounterEvent, CounterState&gt;(</span><br><span class="line">        bloc: _counterBloc,</span><br><span class="line">        builder: (BuildContext context, CounterState counterState) &#123;</span><br><span class="line">          <span class="keyword">return</span> Center(</span><br><span class="line">            child: Column(</span><br><span class="line">              mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">              children: &lt;Widget&gt;[</span><br><span class="line">                Text(</span><br><span class="line">                  <span class="string">'You have pushed the button this many times:'</span>,</span><br><span class="line">                ),</span><br><span class="line">                Text(</span><br><span class="line">                  <span class="string">'<span class="subst">$&#123;(counterState as CountingState).counter&#125;</span>'</span>,</span><br><span class="line">                  style: TextStyle(fontSize: <span class="number">24.0</span>),</span><br><span class="line">                ),</span><br><span class="line">              ],</span><br><span class="line">            ),</span><br><span class="line">          );</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: Column(</span><br><span class="line">        crossAxisAlignment: CrossAxisAlignment.end,</span><br><span class="line">        mainAxisAlignment: MainAxisAlignment.end,</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          PaddingFloatingActionButton(</span><br><span class="line">            icon: Icons.add,</span><br><span class="line">            onPressed: () =&gt; _counterBloc.dispatch(IncrementEvent()),</span><br><span class="line">          ),</span><br><span class="line">          PaddingFloatingActionButton(</span><br><span class="line">            icon: Icons.remove,</span><br><span class="line">            onPressed: () =&gt; _counterBloc.dispatch(DecrementEvent()),</span><br><span class="line">          )</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完成了页面布局和内容组合。使用StatelessWidget实现widget构造。通过使用<code>final CounterBloc _counterBloc = BlocProvider.of&lt;CounterBloc&gt;(context);</code>获取之前父节点注入的bloc变量。</p>
+<p>通过<code>body: BlocBuilder&lt;CounterEvent, CounterState&gt;(</code>构造实际关键bloc业务的UI组件。</p>
+<p>通过<code>&#39;${(counterState as CountingState).counter}&#39;</code>访问State的值，更新显示。</p>
+<p>通过通用封装组件PaddingFloatingActionButton实现浮动按钮的可重用组件封装。</p>
+<p>【综合】在PaddingFloatingActionButton的onPressed事件中，调用bloc发射事件<code>onPressed: () =&gt; _counterBloc.dispatch(IncrementEvent()),</code>。在Bloc的实现中，根据mapEventToState进行事件到State的映射转换，转换成State后，通过<code>Stream&lt;CounterState&gt;</code>激活<code>body: BlocBuilder&lt;CounterEvent, CounterState&gt;(</code>的重构（重绘）操作，实现Widget的局部更新。</p>
+</li>
+<li><p>最终更改入口main.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:bloc/bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/blocs/blocs.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/pages/pages.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  BlocSupervisor().delegate = SimpleBlocDelegate();</span><br><span class="line"></span><br><span class="line">  runApp(MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(title: <span class="string">'Flutter Demo Home Page'</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行截屏：</p>
+<p><img src="https://github.com/dragonetail/flutterpoc/raw/counter_refactor/screenshots/counter_refactor.png" alt="增减计数器运行结果"></p>
+</li>
+</ol>
+<h2 id="BLOC参考"><a href="#BLOC参考" class="headerlink" title="BLOC参考"></a>BLOC参考</h2><p>参考：</p>
+<ul>
+<li><a href="https://pub.dartlang.org/packages/bloc" target="_blank" rel="noopener">https://pub.dartlang.org/packages/bloc</a></li>
+<li><a href="https://pub.dartlang.org/packages/flutter_bloc" target="_blank" rel="noopener">https://pub.dartlang.org/packages/flutter_bloc</a></li>
+<li><a href="https://felangel.github.io/bloc/" target="_blank" rel="noopener">https://felangel.github.io/bloc/</a></li>
+<li><a href="https://github.com/felangel/bloc/tree/master/examples/" target="_blank" rel="noopener">https://github.com/felangel/bloc/tree/master/examples/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/12/面试故事-Java的Map篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/12/面试故事-Java的Map篇/" class="post-title-link" itemprop="url">面试故事-Java的Map篇</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 11:23:56" itemprop="dateCreated datePublished" datetime="2019-03-12T11:23:56+08:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试/" itemprop="url" rel="index"><span itemprop="name">面试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在面试与被面之间游荡，把面试作为一项事情来做。</p>
+<h1 id="营养早餐"><a href="#营养早餐" class="headerlink" title="营养早餐"></a>营养早餐</h1><h2 id="HashMap、Hashtable和TreeMap的区别"><a href="#HashMap、Hashtable和TreeMap的区别" class="headerlink" title="HashMap、Hashtable和TreeMap的区别"></a>HashMap、Hashtable和TreeMap的区别</h2><ol>
+<li>都实现了Map接口，（Key，Value）元组存储逻辑概念，内部采用Hash（rehash）算法提供高效的访问速度。</li>
+<li>Hash的计算依赖于Key的hashCode和equals实现。</li>
+<li>HashMap允许null作为Key和Value出现，而Hashtable不允许，对于null键值会抛异常。（补充HashMap的null键值对应的value会被存储到内部条目Array的0位，业务层面可以作为默认值的用途来使用，个人意见是不建议使用，使用业务含义清晰的Key常量作为默认值也许会是更好的选择）。</li>
+<li>Hashtable的方法是线程安全的，内部方法之间使用Synchronized同步保护；而HashMap和TreeMap需要使用者自己保障线程安全机制。</li>
+<li>因为线程机制的原因，Hashmap的操作会比Hashtable更高效一些（对于Web环境编程的小白来说，正常业务上，建议直接使用Hashtable，除非遇到性能集中爆发的地方，再考虑HashMap吧。补充，Java5提供了一个ConcurrentHashMap，没有太多调查和详细对比，从JDK的API文档来看，是建议使用这个类替代Hashtable的）。</li>
+<li>Hashtable和HashMap的iterator、keySet()、values()都是（类）视图方式返回，即fail-fast模式，这种模式下，除非用返回对象直接remove来变更Map，其他方式或进程对Map的修改，都会在下一次hasNext或者next方法的时候（有可能会）触发<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html" target="_blank" rel="noopener">ConcurrentModificationException</a>。Hashtable提供的keys()和elements()返回的<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html" target="_blank" rel="noopener">Enumeration</a>不是fail-fast模式的视图化操作模式，是clone模式。</li>
+<li>迭代访问数据的顺序时，HashMap和Hashtable不保证数据的顺序，并且不能保证数据顺序根据时间保持不变；TreeMap能够根据键值的比较器迭代访问整个条目。</li>
+<li>对于TreeMap，如果比较器不允许空值，使用null的Key会引发异常。</li>
+<li>三个详细比较</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">                 | HashMap | Hashtable | TreeMap</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">iteration order  | no      | no        | yes</span><br><span class="line">null key-value   | yes-yes | no-no     | no-yes</span><br><span class="line">synchronized     | no      | yes       | no</span><br><span class="line">time performance | O(1)    | O(1)      | O(log n)</span><br><span class="line">implementation   | buckets | buckets   | red-black tree</span><br></pre></td></tr></table></figure>
+<h2 id="fail-fast与fail-safe"><a href="#fail-fast与fail-safe" class="headerlink" title="fail-fast与fail-safe"></a>fail-fast与fail-safe</h2><ol>
+<li>这是对Java的Collections相关类的操作接口的一个实现和使用概念；</li>
+<li>白话来说，fail-fast是以View（视图）的模式对原有Collection数据的访问，这个时候除了直接用View（通常是Iterator接口）进行remove对象，其他方式对原有Collection的增删改都可能会触ConcurrentModificationException](<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html)。" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html)。</a></li>
+<li>而fail-safe则不是以View模式，而是以Clone模式。</li>
+<li>fail-fast能够访问到最新的数据内容；fail-safe只能访问到clone时点的数据。</li>
+<li>fail-fast通过算法框架控制访问，没有空间需求；fail-safe会clone数据，有空间需求，对于大的数据集合，需要注意。</li>
+<li>简单的来说java.util下面的Collection对象都是使用fail-fast模式（不完全准确，个别特殊接口除外，例如Hashtable的keys()和elements()接口），常见例如：HashMap、Vector、ArrayList、HashSet；java.util.concurrent包下都是用fail-safe模式，例如：CopyOnWriteArrayList、ConcurrentHashMap。</li>
+</ol>
+<h2 id="红黑树（Red-black-Tree）"><a href="#红黑树（Red-black-Tree）" class="headerlink" title="红黑树（Red-black Tree）"></a>红黑树（Red-black Tree）</h2><p>红黑树（Red–black tree）同AVL（根据发明者Adelson-Velsky 和 Landis命名）都是一种<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91" target="_blank" rel="noopener">自平衡二叉查找树</a>，都对插入时间、删除时间和查找时间提供了最好可能的最坏情况担保。除了O(log n)的时间之外，红黑树的持久版本对每次插入或删除需要 O(log n)的空间。</p>
+<p>红黑树的特点：</p>
+<ul>
+<li>节点是红色或黑色。</li>
+<li>根是黑色。</li>
+<li>所有叶子都是黑色（叶子是NIL节点）。</li>
+<li>每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）</li>
+<li>从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</li>
+</ul>
+<p>这些约束确保了红黑树的关键特性：从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。结果是这个树大致上是平衡的。因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。</p>
+<h2 id="Map相关常用操作"><a href="#Map相关常用操作" class="headerlink" title="Map相关常用操作"></a>Map相关常用操作</h2><p>遍历数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Entry entry: map.entrySet()) &#123;</span><br><span class="line">  <span class="comment">// get key</span></span><br><span class="line">  K key = entry.getKey();</span><br><span class="line">  <span class="comment">// get value</span></span><br><span class="line">  V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Iterator itr = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) &#123;</span><br><span class="line">  Entry entry = itr.next();</span><br><span class="line">  <span class="comment">// get key</span></span><br><span class="line">  K key = entry.getKey();</span><br><span class="line">  <span class="comment">// get value</span></span><br><span class="line">  V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据Key排序（需要业务保障Key不能出现null）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> e1.getKey().compareTo(e2.getKey());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用TreeMap排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SortedMap sortedMap = <span class="keyword">new</span> TreeMap(<span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(K k1, K k2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> k1.compareTo(k2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">sortedMap.putAll(map);</span><br></pre></td></tr></table></figure>
+<p>根据Value进行排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br><span class="line">Collections.sort(list, <span class="keyword">new</span> Comparator() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Entry e1, Entry e2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> e1.getValue().compareTo(e2.getValue());</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>静态Map</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map map;  <span class="comment">//并能真的内容静态，使用的代码仍然能够使用put方法操作Map对象的内容</span></span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    map.put(<span class="number">1</span>, <span class="string">"one"</span>);</span><br><span class="line">    map.put(<span class="number">2</span>, <span class="string">"two"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map map;</span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    Map aMap = <span class="keyword">new</span> HashMap();</span><br><span class="line">    aMap.put(<span class="number">1</span>, <span class="string">"one"</span>);</span><br><span class="line">    aMap.put(<span class="number">2</span>, <span class="string">"two"</span>);</span><br><span class="line">    map = Collections.unmodifiableMap(aMap);  <span class="comment">//固化保护Map的内容是静态</span></span><br><span class="line">    						<span class="comment">//如果使用put方法，将会抛出UnsupportedOperationException</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双向映射Map"><a href="#双向映射Map" class="headerlink" title="双向映射Map"></a>双向映射Map</h2><p>有时，我们需要一组键对，互相映射，允许通过Key查找，也允许通过Value“反向查找”。JDK不支持双向映射，需要使用两个Map对象来进行保存和处理。</p>
+<p>Apache Common Collections 和 Guava 的 <a href="https://commons.apache.org/proper/commons-collections/javadocs/api-3.2.1/org/apache/commons/collections/BidiMap.html" target="_blank" rel="noopener"><strong>BidiMap</strong></a>and <a href="https://guava-libraries.googlecode.com/svn/tags/release09/javadoc/com/google/common/collect/BiMap.html" target="_blank" rel="noopener"><strong>BiMap</strong></a>都实现了这类功能。</p>
+<h2 id="Map拷贝"><a href="#Map拷贝" class="headerlink" title="Map拷贝"></a>Map拷贝</h2><p>多数Map实现类都实现了使用构造方法，传入另外一个Collection对象来实现数据的内容的复制，但是这个复制不是同步的，会出现上面的fail-fast问题（<font color="red">TODO 需要探究或验证</font>）。</p>
+<p>正确的用法是使用Collections.synchronizedMap()。</p>
+<h2 id="空Map"><a href="#空Map" class="headerlink" title="空Map"></a>空Map</h2><p>很少会有需要，但是某个时候调用一些接口需要Map，但是不需要数据的时候创建一个空Map也是需要的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map = Collections.emptyMap();  <span class="comment">//返回的是内容也不可变的Map</span></span><br><span class="line"></span><br><span class="line">map = <span class="keyword">new</span> HashMap();</span><br></pre></td></tr></table></figure>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a><a href="https://www.programcreek.com/2013/03/hashmap-vs-treemap-vs-hashtable-vs-linkedhashmap/" target="_blank" rel="noopener">LinkedHashMap</a></h2><ol start="7">
+<li><p>同TreeMap和HashMap一样，特殊的是其迭代顺序是其插入的顺序；并且根据这个<a href="https://www.baeldung.com/java-linked-hashmap" target="_blank" rel="noopener">博客</a>来看，每次通过Get操作访问其内的元素，会把其访问的元素放到最尾的地方，改变迭代的顺序（<font color="red">如下示例验证</font>）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.util.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashMapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> LinkedHashMap&lt;Integer, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(<span class="number">16</span>, .<span class="number">75f</span>, <span class="keyword">true</span>);</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">2</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">3</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">4</span>, <span class="keyword">null</span>);</span><br><span class="line">        map.put(<span class="number">5</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> Set&lt;Integer&gt; keys = map.keySet();</span><br><span class="line">        Assert.isTrue(<span class="string">"[1, 2, 3, 4, 5]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">4</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[1, 2, 3, 5, 4]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">1</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[2, 3, 5, 4, 1]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        map.get(<span class="number">3</span>);</span><br><span class="line">        Assert.isTrue(<span class="string">"[2, 5, 4, 1, 3]"</span>.equals(keys.toString()), <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"OK"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其时间复杂度，同HashMap一样，内部使用buckets实现，但是其迭代的时间复杂度因为有Link的存在，仅与其元素个数有关，而HashMap的迭代时间复杂度跟其容量有关。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/07/Spring-JWT实现微服务集群/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/Spring-JWT实现微服务集群/" class="post-title-link" itemprop="url">Spring+JWT实现微服务集群</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 17:02:00" itemprop="dateCreated datePublished" datetime="2019-03-07T17:02:00+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一个练习项目，来源于网上一个需求，很感兴趣，就自己做了一个DEMO。</p>
+<p>之前这类工作大刘同学做的比较多，就当想念他一下吧。</p>
+<h1 id="Spring-JWT实现基础微服务"><a href="#Spring-JWT实现基础微服务" class="headerlink" title="Spring+JWT实现基础微服务"></a>Spring+JWT实现基础微服务</h1><p>Spring使用微服务，有完整的Cloud组件协助完成。但是通常Cloud太过庞大，很多小的项目需要一定的业务拆分，但是业务组件之间可能不需要使用Cloud那么庞大的管理。</p>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>这个Demo就是针对这个目的设立的，主要完成了：</p>
+<ul>
+<li>使用JWT实现了无Session化的访问控制，适合前端APP类的接入</li>
+<li>使用了一个OAuthServer服务器，完成认证工作（授权的部分Dummy了，很容易扩展）</li>
+<li>实现了一个Miscroservcie1作为微服务组件1，模拟获取用户的基本信息</li>
+<li>实现了一个Miscroservcie2作为微服务组件2，模拟获取用户的技能信息（多条技能）</li>
+</ul>
+<h2 id="业务流程："><a href="#业务流程：" class="headerlink" title="业务流程："></a>业务流程：</h2><ul>
+<li>用户通过OAuthServer进行Login认证，获取JWT Token</li>
+<li>通过JWT Token访问Miscroservcie1，获取用户的基本信息和技能信息</li>
+<li>Miscroservcie1中，传递JWT Token到Miscroservcie2，获取技能信息，同基本信息一起打包返回给前端</li>
+</ul>
+<p>很简单的需求，代码也没有复杂的地方，核心在Miscroservcie1通过ThreadLocal和RestTemplateInterceptor实现了基于RestTemplate的JWT Token的透传，完成的级联认证。</p>
+<h2 id="在项目中使用可以优化的内容："><a href="#在项目中使用可以优化的内容：" class="headerlink" title="在项目中使用可以优化的内容："></a>在项目中使用可以优化的内容：</h2><ul>
+<li>JWT Token中如何封装授权信息，还是由Miscroservcie通过接口访问OAuthServer来获取</li>
+<li>Miscroservcie拿到JWT Token后，是否需要向OAuthServer进行增强验证</li>
+<li>结合上面两个需求，理想的方案还是JWT Token尽可能简单，只有Principal的ID（用户ID）和超时等JWT信息，其他附加业务信息通过OAuthServer来提供比较好，当然Miscroservcie可以缓存，或者整体使用缓存集群（例如Hazelcast来实现）会更好</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>好吧，所有的都在代码中了： <a href="https://github.com/dragonetail/MicroservicesJwtOAuth" target="_blank" rel="noopener">MicroservicesJwtOAuth</a></p>
+<p>（本页梳理耗时30分钟）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/07/看HTTP演变论基础科技发展与创新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/看HTTP演变论基础科技发展与创新/" class="post-title-link" itemprop="url">看HTTP演变论基础科技发展与创新</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 16:35:48" itemprop="dateCreated datePublished" datetime="2019-03-07T16:35:48+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>早上通过微信看了这篇【<a href="https://mp.weixin.qq.com/s/EYRFmYdNm63DcjjZcancLw" target="_blank" rel="noopener">HTTP3 为什么比 HTTP2 靠谱？ | 技术头条</a>】，标题有点大，内容却是十分充实细腻的。文章最后总结主要说了三个问题：</p>
+<ul>
+<li>HTTP/1.x 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷；</li>
+<li>HTTP/2 通过多路复用、二进制流、Header 压缩等等技术，极大地提高了性能，但是还是存在着问题的；</li>
+<li>QUIC 基于 UDP 实现，是 HTTP/3 中的底层支撑协议，该协议基于 UDP，又取了 TCP 中的精华，实现了即快又可靠的协议。</li>
+</ul>
+<p>但是整篇细读看下来，文章隐藏了进一步的几个要点或问题可以进一步阐述：</p>
+<ul>
+<li>HTTP/1.x 各种问题，但是是目前网络基石，不过可以简单替换</li>
+<li>HTTP/2标准于2015年5月以RFC 7540正式发表，根据<a href="https://zh.wikipedia.org/w/index.php?title=W3Techs&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">W3Techs</a>的数据，在2017年5月，在排名前一千万的网站中，有13.7%支持了HTTP/2，尚远远没有普及</li>
+<li>QUIC也就是HTTP/3，目前貌似只有一个Go开发的Caddy未来服务器支持，客户端应该也只有Chrome一家吧，不过看过一些文章，貌似稳定性还需要一些时间</li>
+<li>HTTP是这个样子，可以持续发展进化，虽然代价昂贵</li>
+<li>但是TCP、UDP这两个基础协议目前尚无持续发展的规划</li>
+<li>SSH貌似前一段看已过一个替代方案，忘记了名字</li>
+</ul>
+<p>细细看来，其实说明了一个基本问题： 越是基础的，越是被广泛应用的，替换更新的代价就越高。</p>
+<p>再细看一下，一个产品的规划、上线、推广、升级，一旦到了一定规模，其维护、升级的成本会成级数上涨。但结合商务的同学想法，一个产品要快快下海试水，能不淹死才能继续投入，想想也没有错，商务技术互相商量平衡吧。就怕前面商务铺的大了，技术投入深了，有了基础了，需要在进一步加大投入的时候，商务说看不到岸了，模模糊糊停了，很想学学BigBang中那么直白的说，不过还是算了。</p>
+<p>总结一下，上面的文章值得细细看，结束。（回头看看标题，貌似标准的乱水😂）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/07/简历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/简历/" class="post-title-link" itemprop="url">简历</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 09:40:21" itemprop="dateCreated datePublished" datetime="2019-03-07T09:40:21+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/简历/" itemprop="url" rel="index"><span itemprop="name">简历</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul>
+<li>手机：135-9️⃣1️⃣7️⃣9️⃣-9735（已防爬虫处理，部分数字图片化处理）</li>
+<li>Email：<a href="mailto:dragonetail@gmail.com" target="_blank" rel="noopener">dragonetail@gmail.com</a> </li>
+<li>微信号：dragonetail （或手机号）</li>
+</ul>
+<hr>
+<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
+<li><p>本科/沈阳航空工业学院/计算机 </p>
+</li>
+<li><p>期望职位：技术总监，系统架构师</p>
+</li>
+<li><p>期望城市：大连，深圳，北京</p>
+</li>
+<li><p>Github：<a href="http://github.com/dragonetail" target="_blank" rel="noopener">http://github.com/dragonetail</a> </p>
+</li>
+</ul>
+<ul>
+<li>本简历网址： <a href="http://www.blackharry.com/2019/03/07/简历/" target="_blank" rel="noopener">http://www.blackharry.com/2019/03/07/简历/</a></li>
+</ul>
+<hr>
+<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="北京力鼎创软-（-2016年4月-2019年3月-）"><a href="#北京力鼎创软-（-2016年4月-2019年3月-）" class="headerlink" title="北京力鼎创软 （ 2016年4月 ~ 2019年3月 ）"></a>北京力鼎创软 （ 2016年4月 ~ 2019年3月 ）</h2><h3 id="全国电影票房管理系统"><a href="#全国电影票房管理系统" class="headerlink" title="全国电影票房管理系统"></a>全国电影票房管理系统</h3><p>对全国所有影票实施每张影票的实时上报和实时核验，同时对影院、网售商的每日合报数据进行交叉校验、统计分析，实现准实时票房偷漏瞒报的稽查，对公众提供影票二维码扫描实时验真服务，对管理部门提供数据统计分析服务，对第三方提供数据接口服务，以及业务管理需要的软件备案和巡检等辅助功能等。</p>
+<p>主要负责推动Openstack云平台、Hadoop大数据平台、微服务架构平台、数据接入网关集群平台、数据服务平台、运维支撑平台的建设，以及业务需求梳理、业务拆分和实现框架的开发与构建。</p>
+<p>项目在向微服务互联网架构推进过程中，一度面临不少困难，团队成员传统观念比较重，原有基于Oracle的关系型老平台对需求和架构设计的影响也比较大，团队人员对Openstack、Hadoop、微服务这些新架构新概念存在一定的未知恐惧心理等一系列问题，对项目前期的推进造成了不小的困扰。</p>
+<p>随着项目的推进，通过合理优化业务，基于MDD思想优化拆分业务集群范围，逐渐形成了清晰有效的业务集群架构，理顺了业务组件关系和数据关系。技术和性能上，采用Flume缓冲上报数据实现异构集群处理能力，提升峰值压力下系统的有效处理能力；引入Hazelcast实现集群间分布式数据缓存、异步数据读写、分布式数据处理的能力，有效简化集群间的数据耦合和业务分离的技术实现；基于业务需求合理采用Hadoop组件，充分利用HBase随机读写能力和Impala的数据分析与类SQL的数据操作能力，简化业务对大数据的操作复杂度，同时保障数据的一致性、有效性和时效性。</p>
+<p>最终项目超越了原有Oracle集群的业务处理能力，成功上线运行。在百亿数据的基础上，每日一亿的上报数据量，实现了影票数据的实时查询和核验，报表数据的准实时处理与查询能力；对于上报数据的核心处理能力达到了2万每秒的设计指标。</p>
+<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume、Netty、Hazelcast、MySQL + Hadoop + HBase + Impala、ArgularJS + Bootstrape、Openstack、APP（Android + iOS）、C#、Socket协议、微信公众号、数据服务网关</p>
+<h3 id="车联网平台"><a href="#车联网平台" class="headerlink" title="车联网平台"></a>车联网平台</h3><p>这个项目包括车联网管理平台、分时租赁平台、互联网车辆营销平台三个板块的业务。车联网管理平台通过对接TSP或直接对接车辆TBOX实现车辆的联网，对车联设备提供各类增值服务；分时租赁平台是在车联网平台的基础上，实现专车、分时租赁、机构用车等多种分时用车的服务；互联网车辆营销平台是基于传统4S点的汽车销售模式，基于互联网营销模式构建的新型车辆销售模式，提供潜客拓展、售前服务、预约用车、销售服务、售后服务等功能。</p>
+<p>主要负责推动车联网平台的微服务云架构技术路线和实现框架，协助完成微服务框架的构建和项目功能实现，支撑车联网云平台、分时租赁、互联网车辆营销等系列产品的开发、上线和运营。</p>
+<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume、Netty、Redis、MySQL、ArgularJS + Bootstrape、APP（Android + iOS）、Socket协议</p>
+<h3 id="IM支撑平台"><a href="#IM支撑平台" class="headerlink" title="IM支撑平台"></a>IM支撑平台</h3><p>项目主要以自主研发IM通信框架为基础，实现类微信的社群功能，并在其基础上，延伸办公、政务等业务功能，通过前端类微信APP界面实现互联网办公自动化的业务需求。同时还实现了多租户SaaS的功能和部署管理平台，以及第三方认证、外部服务对接等多种模块化整合框架。</p>
+<p>主导IM基础支撑平台的架构设计和技术研发，协助IM支撑平台业务应用化场景的设计和推广实施。主要参与IM平台通讯协议、微服务架构应用架构、多租户应用架构的设计与开发。</p>
+<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot、Spring JPA + Hibernate、Flume、Netty、Redis、MySQL、ArgularJS + Bootstrape、APP（Android + iOS）、C#、Socket协议、SaaS框架设计</p>
+<h2 id="大连华信-（-2011年4月-2016年3月-）"><a href="#大连华信-（-2011年4月-2016年3月-）" class="headerlink" title="大连华信 （ 2011年4月 ~ 2016年3月 ）"></a>大连华信 （ 2011年4月 ~ 2016年3月 ）</h2><h3 id="IaaS云平台研发"><a href="#IaaS云平台研发" class="headerlink" title="IaaS云平台研发"></a>IaaS云平台研发</h3><p>主导构建云计算研发团队，组织产品调研和选型，基于Openstack二次开发构建了DHC-IaaS平台，实现自动化云平台部署、运营、运维和管理功能，成功承担公司云数据中心和大连云的构建运营工作。</p>
+<p><strong>涉及技术：</strong> Openstack、Linux、KVM、Ceph/GlusterFS、OpenVSwitch、Docker、Java + Spring MVC、Spring JPA + Hibernate、EHcache、MySQL、JQuery、Redmine</p>
+<h2 id="日本Infosea-（-2006年4月-2011年3月-）"><a href="#日本Infosea-（-2006年4月-2011年3月-）" class="headerlink" title="日本Infosea （ 2006年4月 ~ 2011年3月 ）"></a>日本Infosea （ 2006年4月 ~ 2011年3月 ）</h2><h3 id="日本某电信研究院SAML安全平台研发"><a href="#日本某电信研究院SAML安全平台研发" class="headerlink" title="日本某电信研究院SAML安全平台研发"></a>日本某电信研究院SAML安全平台研发</h3><p>负责日本某电信研究院SAML安全平台产品的研发、维护，持续跟进SAML安全规范，整合Open-ID、OAuth等新型主流认证和授权协议，以及产品衍生的外围项目集成、实施工作。</p>
+<p><strong>涉及技术：</strong> SAML、Open-ID、OAuth、Java、Structs、PostgreSQL、RSA Security、CA、Linux</p>
+<h2 id="埃森哲-大连-（-2003年3月-2006年3月-）"><a href="#埃森哲-大连-（-2003年3月-2006年3月-）" class="headerlink" title="埃森哲-大连 （ 2003年3月 ~ 2006年3月 ）"></a>埃森哲-大连 （ 2003年3月 ~ 2006年3月 ）</h2><h3 id="美国某信用公司Mainframe到Linux系统迁移"><a href="#美国某信用公司Mainframe到Linux系统迁移" class="headerlink" title="美国某信用公司Mainframe到Linux系统迁移"></a>美国某信用公司Mainframe到Linux系统迁移</h3><p>负责制定从Mainframe到Linux的迁移技术路线、POC目标、迁移计划、验证方案等。主要涉及Mainframe的C++到Linux C++的移植，Mainframe的JCL到Linux的Shell转换，以及数据格式的必要转换。</p>
+<p>整个工作的主要困难在于迁移规则的制定、验证和提升工作方法的效率上，以及既有系统的既存BUG，随着迁移验证的完整测试，也需要发现、记录和修正；另外一方面来自于最终客户的业务团队和Offshore的技术团队的工作时间和工作方法上，也存在不少挑战；最终项目超出客户预期完成了迁移工作，得到了最终客户和公司内部的高度评价。</p>
+<p><strong>涉及技术：</strong> JCL、Shell、C++、Linux、XML、Java、SyncSort</p>
+<h3 id="南方某市国税EAI系统"><a href="#南方某市国税EAI系统" class="headerlink" title="南方某市国税EAI系统"></a>南方某市国税EAI系统</h3><p>负责同战略咨询一起研讨业务路线，制定EAI的技术路线，并负责核心技术模块的开发和实施，完成国税、银行、国库、企业的信息化集成。</p>
+<p><strong>涉及技术：</strong>Java、Structs、Oracle、Socket通信、MQ、HTML、JavaScript</p>
+<h3 id="某证券公司COBOL到C的移植项目"><a href="#某证券公司COBOL到C的移植项目" class="headerlink" title="某证券公司COBOL到C的移植项目"></a>某证券公司COBOL到C的移植项目</h3><p>负责某证券公司COBOL移植到C的技术路线选择和工具开发，以及移植工作的计划的推进。主要基于JavaCC和JTB对COBOL代码进行解析，生成中间成果语法树，再通过语法树信息结合项目特定需求模式，生成目标C代码供人工审阅修订，提升移植效率。</p>
+<p><strong>涉及技术：</strong>COBOL、C、VC、GCC、JavaCC、JTB、Java</p>
+<h2 id="大连华信-（1999年3月-2003年2月-）"><a href="#大连华信-（1999年3月-2003年2月-）" class="headerlink" title="大连华信 （1999年3月 ~ 2003年2月 ）"></a>大连华信 （1999年3月 ~ 2003年2月 ）</h2><h3 id="大连医疗保险实时结算系统"><a href="#大连医疗保险实时结算系统" class="headerlink" title="大连医疗保险实时结算系统"></a>大连医疗保险实时结算系统</h3><p>主导设计了三层分布式实时医疗保险结算体系，通过研发内存数据操作体系、分布式交易事务保障体系等，实现了远程实时内存级别的保险结算业务，以及同后端Oracle传统业务系统间的数据交互与同步机制的实现。</p>
+<p>该项目创造了国内同行业的技术创新，其核心实时结算架构从2000年底稳定运行至今。</p>
+<p><strong>涉及技术：</strong> C++、VC、Linux、Unix、Socket通信、内存数据存储与交易处理</p>
+<hr>
+<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><p>以下均为我熟练使用的技能</p>
+<ul>
+<li>后端开发：Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume/Kafaka、Netty、Hazelcast/Redis</li>
+<li>数据库：MySQL、Oracle、PostgeSQL、H2、SQLLite</li>
+<li>大数据：Hadoop、HBase、Impala、Hive、Spark、Hue</li>
+<li>前端框架：Bootstrap、AngularJS、ReactJS、JQuery、AntD、Vue</li>
+<li>云平台技术： Openstack、Docker、Linux、KVM、OpenVSwitch、Ceph、GlusterFS、主流云平台（阿里云等）</li>
+<li>项目开发配置： SVN、Git、Redmine、Gitlab、Maven、Jenkins、Sonar</li>
+<li>其他开发语言： C++、Swift、Go、Python</li>
+<li>其他开发能力： MDD设计、Restful接口设计、微服务架构设计、大数据应用架构设计、SaaS应用框架设计、Socket通信协议设计、数据服务网关设计、安全认证集成</li>
+</ul>
+<hr>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢您的时间，期待有机会与您共事。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/06/电影性能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/06/电影性能/" class="post-title-link" itemprop="url">电影性能</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 15:44:44" itemprop="dateCreated datePublished" datetime="2019-03-06T15:44:44+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/项目回顾/" itemprop="url" rel="index"><span itemprop="name">项目回顾</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><ul>
+<li>20+物理机集群</li>
+<li>80+虚拟机组成的业务集群</li>
+<li>60亿+ HBase数据</li>
+<li>10亿+ Impala数据</li>
+<li>10000+ 实时数据上报方</li>
+<li>1000万+ 周末日观影（票房3亿）</li>
+<li>1亿+ 日接口交易量</li>
+<li>6万+ 平日高峰交易每分钟（1000+ 每秒）</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/06/汽车项目回顾/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/06/汽车项目回顾/" class="post-title-link" itemprop="url">汽车项目回顾</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 14:26:18" itemprop="dateCreated datePublished" datetime="2019-03-06T14:26:18+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/项目回顾/" itemprop="url" rel="index"><span itemprop="name">项目回顾</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>项目内容包括车联网管理平台、分时租赁平台、互联网车辆营销平台三个板块的业务。车联网通过对接TSP或直接对接车辆TBOX实现车辆的联网，对车联设备提供各类增值服务；分时租赁平台是在车联网平台的基础上，实现专车、分时租赁、机构用车等多种分时用车的服务；互联网车辆营销是基于传统4S点的汽车销售模式，基于互联网营销模式构建的新型车辆销售模式，提供潜客拓展、售前服务、预约用车、销售服务、售后服务等功能。</p>
+<p>项目基于Spring Boot/Cloud构建的微服务框架实现业务的原子化封装和集群化部署。</p>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><ul>
+<li>Java + Spring MVC + Spring Boot + Spring Cloud</li>
+<li>Spring JPA + Hibernate</li>
+<li>Flume</li>
+<li>Netty</li>
+<li>Hazelcast 、Redis</li>
+<li>MySQL + HBase + Impala</li>
+<li>ArgularJS + Bootstrape</li>
+<li>APP（Android + iOS）</li>
+<li>微信公众号</li>
+</ul>
+<h2 id="参考截图（已脱敏处理）"><a href="#参考截图（已脱敏处理）" class="headerlink" title="参考截图（已脱敏处理）"></a>参考截图（已脱敏处理）</h2><ul>
+<li>车联网平台</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/telematics/telemetics_platform.png" alt></div>
+
+<ul>
+<li>互联营销</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/telematics/telemetics_sales.png" alt></div>
+
+<ul>
+<li>分时租赁</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/telematics/APP2.png" alt></div><br><div style="width: 400px; margin: auto"><img src="/proj-images/telematics/APP4.png" alt></div>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/05/电影项目回顾/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/05/电影项目回顾/" class="post-title-link" itemprop="url">电影项目回顾</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 22:33:03" itemprop="dateCreated datePublished" datetime="2019-03-05T22:33:03+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/项目回顾/" itemprop="url" rel="index"><span itemprop="name">项目回顾</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>对全国所有影票实时收取每个张票的上报信息，针对影院、网售商、每日合报数据进行数据实时校验、交叉校验，提供实时影票的二维码扫描验真服务，提供数据统计分析服务，以及数据管理业务需要的各种功能。项目涉及Openstack云平台构建、Hadoop大数据平台构建、微服务数据处理平台、数据接入网关集群平台、数据服务平台、APP数据查看、微信数据报告和监控等。</p>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><ul>
+<li>Openstack</li>
+<li>Hadoop</li>
+<li>Java + Spring MVC + Spring Boot + Spring Cloud</li>
+<li>Spring JPA + Hibernate</li>
+<li>Flume</li>
+<li>Netty</li>
+<li>Hazelcast</li>
+<li>MySQL + HBase + Impala</li>
+<li>ArgularJS + Bootstrape</li>
+<li>C#</li>
+<li>APP（Android + iOS）</li>
+<li>微信公众号</li>
+<li>数据服务网关</li>
+</ul>
+<h2 id="参考截图（已脱敏处理）"><a href="#参考截图（已脱敏处理）" class="headerlink" title="参考截图（已脱敏处理）"></a>参考截图（已脱敏处理）</h2><ul>
+<li>部署架构</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/deployment_architecture.png" alt="部署架构"></div>
+
+<ul>
+<li>Web网站</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/website.png" alt="部署架构"></div>
+
+<ul>
+<li>APP</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/APP.png" alt="部署架构"></div><br><div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/APP2.png" alt="部署架构"></div>
+
+<ul>
+<li>数据监控</li>
+</ul>
+<div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/data_monitor.png" alt="部署架构"></div><br><div style="width: 400px; margin: auto"><img src="/proj-images/nftiims/wexin_data_monitor.png" alt="部署架构"></div>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blackharry1.png" alt="黑哈">
+            
+              <p class="site-author-name" itemprop="name">黑哈</p>
+              <div class="site-description motion-element" itemprop="description">~黑哈等你回家~</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dragonetail" title="GitHub &rarr; https://github.com/dragonetail" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑哈</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
