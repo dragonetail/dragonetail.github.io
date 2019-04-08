@@ -354,6 +354,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/04/08/Flutter的Bloc工程化系列2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/08/Flutter的Bloc工程化系列2/" class="post-title-link" itemprop="url">Flutter的Bloc工程化系列2</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-08 10:51:48 / 修改时间：10:52:40" itemprop="dateCreated datePublished" datetime="2019-04-08T10:51:48+08:00">2019-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/APP编程/" itemprop="url" rel="index"><span itemprop="name">APP编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="BLOC重构Counter实现（BLOC逻辑处理工程简化）"><a href="#BLOC重构Counter实现（BLOC逻辑处理工程简化）" class="headerlink" title="BLOC重构Counter实现（BLOC逻辑处理工程简化）"></a>BLOC重构Counter实现（BLOC逻辑处理工程简化）</h1><p><strong>说明：</strong> 本部分完成部分在分支： <a href="https://github.com/dragonetail/flutterpoc/tree/2-counter_refactor_simplication" target="_blank" rel="noopener">https://github.com/dragonetail/flutterpoc/tree/2-counter_refactor_simplication</a></p>
+<p><strong>目标：</strong> 根据Flutter缺省计数器例子，遵循Bloc的理念实现增减计数器的逻辑和视图分离，在第一步的基础上，抽取BaseBloc实现，简化Bloc的处理逻辑和工程化。</p>
+<ol>
+<li><p>在的counter_bloc.dart基础上，抽取BaseBloc、BaseEvent、BaseState三个抽象基类。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:bloc/bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:equatable/equatable.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:meta/meta.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseBloc</span>&lt;<span class="title">Event</span> <span class="keyword">extends</span> <span class="title">BaseEvent</span>, <span class="title">State</span> <span class="keyword">extends</span> <span class="title">BaseState</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">Bloc</span>&lt;<span class="title">Event</span>, <span class="title">State</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">//Event到State映射函数表</span></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">Type</span>, <span class="built_in">Function</span>(Event)&gt; <span class="keyword">get</span> mapper;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Stream&lt;State&gt; mapEventToState(</span><br><span class="line">    Event event,</span><br><span class="line">  ) <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">if</span> (mapper == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Type</span> type = event.runtimeType;</span><br><span class="line">    <span class="keyword">var</span> function = mapper[type];</span><br><span class="line">    <span class="keyword">if</span> (function == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">yield</span>* function(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseEvent</span> <span class="keyword">extends</span> <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">  BaseEvent([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseState</span> <span class="keyword">extends</span> <span class="title">Equatable</span> </span>&#123;</span><br><span class="line">  BaseState([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对mapEventToState进行了默认实现，根据<code>Map&lt;Type, Function(Event)&gt; get mapper</code>定义的【Event到State映射函数表】进行业务逻辑函数的dispatch操作，简化业务逻辑的if级联判断。</p>
+</li>
+<li><p>再看看counter_bloc.dart的实现：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'../blocs.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CounterBloc</span> <span class="keyword">extends</span> <span class="title">BaseBloc</span>&lt;<span class="title">CounterEvent</span>, <span class="title">CounterState</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  CounterState <span class="keyword">get</span> initialState =&gt; CountingState(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">Type</span>, <span class="built_in">Function</span>(CounterEvent)&gt; <span class="keyword">get</span> mapper =&gt; &#123;</span><br><span class="line">        IncrementEvent: _mapIncrementEventToState,</span><br><span class="line">        DecrementEvent: _mapDecrementEventToState,</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">  Stream&lt;CounterState&gt; _mapIncrementEventToState(CounterEvent event) <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">yield</span> CountingState((currentState <span class="keyword">as</span> CountingState).counter + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stream&lt;CounterState&gt; _mapDecrementEventToState(CounterEvent event) <span class="keyword">async</span>* &#123;</span><br><span class="line">    <span class="keyword">yield</span> CountingState((currentState <span class="keyword">as</span> CountingState).counter - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event定义</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterEvent</span> <span class="keyword">extends</span> <span class="title">BaseEvent</span></span>&#123;</span><br><span class="line">  CounterEvent([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IncrementEvent</span> <span class="keyword">extends</span> <span class="title">CounterEvent</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecrementEvent</span> <span class="keyword">extends</span> <span class="title">CounterEvent</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//State定义</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterState</span> <span class="keyword">extends</span> <span class="title">BaseState</span></span>&#123;</span><br><span class="line">  CounterState([<span class="built_in">List</span> props = <span class="keyword">const</span> []]) : <span class="keyword">super</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountingState</span> <span class="keyword">extends</span> <span class="title">CounterState</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">int</span> counter;</span><br><span class="line"></span><br><span class="line">  CountingState(<span class="keyword">this</span>.counter) : <span class="keyword">super</span>([counter]);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'CountingState &#123; counter: <span class="subst">$counter</span> &#125;'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过重载<code>Map&lt;Type, Function(CounterEvent)&gt; get mapper =&gt; {</code>定义了两个Event类到对应处理方法的映射表。</p>
+<p>统一映射方法的处理，接受<code>CounterEvent event</code>，返回<code>Stream&lt;CounterState&gt;</code>。</p>
+<p>同时简化Event和State的定义，整个所有Bloc相关的内容都放到一个文件中，减少文件拆分，简化工程化开发的复杂度。</p>
+<p>【研讨】在这个抽取过程中，通过BaseEvent、BaseState的抽取，技术上应该不需要CounterEvent、CounterState进行过渡，直接在映射方法的参数和返回值上使用BaseEvent、BaseState，是不是会更好？</p>
+</li>
+</ol>
+<ol start="3">
+<li>结论： 整体上，这样基本对于业务逻辑拆分隔离来说，复杂度已经降低到类似Spring框架的水平附近了。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/04/07/Flutter的Bloc工程化系列1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2252,7 +2430,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
