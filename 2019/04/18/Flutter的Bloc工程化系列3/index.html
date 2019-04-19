@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=7.0.1" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="APP启动页（Splash Page）说明： 本部分完成部分在分支： https://github.com/dragonetail/flutterpoc/tree/3-splash_page 目标： 涉及Flutter的Router和Splash Page工作原理，全程使用Bloc模式。 思路：   使用Model定义Splash过程所涉及的数据，引导页、广告页、同服务器交互更新图片所有的数据Mo">
+<meta name="keywords" content="Flutter,Bloc,iOS,Android,启动页,Splash Page">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter的Bloc工程化系列3">
+<meta property="og:url" content="http://dragonetail.github.io/2019/04/18/Flutter的Bloc工程化系列3/index.html">
+<meta property="og:site_name" content="微笑卡卡西">
+<meta property="og:description" content="APP启动页（Splash Page）说明： 本部分完成部分在分支： https://github.com/dragonetail/flutterpoc/tree/3-splash_page 目标： 涉及Flutter的Router和Splash Page工作原理，全程使用Bloc模式。 思路：   使用Model定义Splash过程所涉及的数据，引导页、广告页、同服务器交互更新图片所有的数据Mo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-19T03:50:53.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flutter的Bloc工程化系列3">
+<meta name="twitter:description" content="APP启动页（Splash Page）说明： 本部分完成部分在分支： https://github.com/dragonetail/flutterpoc/tree/3-splash_page 目标： 涉及Flutter的Router和Splash Page工作原理，全程使用Bloc模式。 思路：   使用Model定义Splash过程所涉及的数据，引导页、广告页、同服务器交互更新图片所有的数据Mo">
+
+
+
+
+
+
+  <link rel="canonical" href="http://dragonetail.github.io/2019/04/18/Flutter的Bloc工程化系列3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Flutter的Bloc工程化系列3 | 微笑卡卡西</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">微笑卡卡西</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">~黑哈瑞之家~</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/04/18/Flutter的Bloc工程化系列3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Flutter的Bloc工程化系列3
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-18 22:09:35" itemprop="dateCreated datePublished" datetime="2019-04-18T22:09:35+08:00">2019-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-19 11:50:53" itemprop="dateModified" datetime="2019-04-19T11:50:53+08:00">2019-04-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/APP编程/" itemprop="url" rel="index"><span itemprop="name">APP编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="APP启动页（Splash-Page）"><a href="#APP启动页（Splash-Page）" class="headerlink" title="APP启动页（Splash Page）"></a>APP启动页（Splash Page）</h1><p><strong>说明：</strong> 本部分完成部分在分支： <a href="https://github.com/dragonetail/flutterpoc/tree/3-splash_page" target="_blank" rel="noopener">https://github.com/dragonetail/flutterpoc/tree/3-splash_page</a></p>
+<p><strong>目标：</strong> 涉及Flutter的Router和Splash Page工作原理，全程使用Bloc模式。</p>
+<p><strong>思路：</strong> </p>
+<ul>
+<li>使用Model定义Splash过程所涉及的数据，引导页、广告页、同服务器交互更新图片所有的数据Model。</li>
+<li>存储数据Splash所用数据到SP（shared_preferences）中。</li>
+<li>提供HTTP API通过后端Rest更新Splash显示所用图片和标题，控制显示动作。</li>
+<li>抽象Service提供对SP和HTTP数据的访问封装。</li>
+<li>定义Bloc，根据SP中获取的数据进行视图Builder构建，包括默认数据行为设置。</li>
+<li>实现Page页面；</li>
+<li>通过Common封装实现引导页、广告页的View。</li>
+</ul>
+<ol>
+<li><p>Model数据：</p>
+<p>引导页数据模型。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashGuideModel</span> </span>&#123;</span><br><span class="line">  <span class="built_in">bool</span> isUrl;</span><br><span class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; images;</span><br><span class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; textInfos;</span><br><span class="line"></span><br><span class="line">  SplashGuideModel(&#123;<span class="keyword">this</span>.isUrl, <span class="keyword">this</span>.images, <span class="keyword">this</span>.textInfos&#125;);</span><br><span class="line"></span><br><span class="line">  SplashGuideModel.fromJson(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; json)</span><br><span class="line">      : isUrl = json[<span class="string">'isUrl'</span>],</span><br><span class="line">        images = json[<span class="string">'images'</span>].cast&lt;<span class="built_in">String</span>&gt;(),</span><br><span class="line">        textInfos = json[<span class="string">'textInfos'</span>].cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; toJson() =&gt; &#123;</span><br><span class="line">        <span class="string">'tiisUrltle'</span>: isUrl,</span><br><span class="line">        <span class="string">'images'</span>: images,</span><br><span class="line">        <span class="string">'textInfos'</span>: textInfos,</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="built_in">StringBuffer</span> sb = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>(<span class="string">'&#123;'</span>);</span><br><span class="line">    sb.write(<span class="string">"\"isUrl\":\"<span class="subst">$isUrl</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"images\":\"<span class="subst">$images</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"textInfos\":\"<span class="subst">$textInfos</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">'&#125;'</span>);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>广告页数据模型：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashAdModel</span> </span>&#123;</span><br><span class="line">  <span class="built_in">String</span> title;</span><br><span class="line">  <span class="built_in">String</span> imageUrl;</span><br><span class="line">  <span class="built_in">String</span> targetUrl;</span><br><span class="line"></span><br><span class="line">  SplashAdModel(&#123;<span class="keyword">this</span>.title, <span class="keyword">this</span>.imageUrl, <span class="keyword">this</span>.targetUrl&#125;);</span><br><span class="line"></span><br><span class="line">  SplashAdModel.fromJson(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; json)</span><br><span class="line">      : title = json[<span class="string">'title'</span>],</span><br><span class="line">        imageUrl = json[<span class="string">'imageUrl'</span>],</span><br><span class="line">        targetUrl = json[<span class="string">'targetUrl'</span>];</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; toJson() =&gt; &#123;</span><br><span class="line">        <span class="string">'title'</span>: title,</span><br><span class="line">        <span class="string">'imageUrl'</span>: imageUrl,</span><br><span class="line">        <span class="string">'targetUrl'</span>: targetUrl,</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="built_in">StringBuffer</span> sb = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>(<span class="string">'&#123;'</span>);</span><br><span class="line">    sb.write(<span class="string">"\"title\":\"<span class="subst">$title</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"imageUrl\":\"<span class="subst">$imageUrl</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"targetUrl\":\"<span class="subst">$targetUrl</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">'&#125;'</span>);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网络通信用的数据模型：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./index.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashModel</span> </span>&#123;</span><br><span class="line">  <span class="built_in">String</span> version;</span><br><span class="line">  <span class="built_in">bool</span> nextShowGuide;</span><br><span class="line">  <span class="built_in">bool</span> updateGuideInfo;</span><br><span class="line">  <span class="built_in">bool</span> updateAdInfo;</span><br><span class="line">  SplashGuideModel guideInfo;</span><br><span class="line">  SplashAdModel adInfo;</span><br><span class="line"></span><br><span class="line">  SplashModel(</span><br><span class="line">      &#123;<span class="keyword">this</span>.version,</span><br><span class="line">      <span class="keyword">this</span>.nextShowGuide,</span><br><span class="line">      <span class="keyword">this</span>.updateGuideInfo,</span><br><span class="line">      <span class="keyword">this</span>.updateAdInfo,</span><br><span class="line">      <span class="keyword">this</span>.guideInfo,</span><br><span class="line">      <span class="keyword">this</span>.adInfo&#125;);</span><br><span class="line"></span><br><span class="line">  SplashModel.fromJson(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; json)</span><br><span class="line">      : version = json[<span class="string">'version'</span>],</span><br><span class="line">        nextShowGuide = json[<span class="string">'nextShowGuide'</span>],</span><br><span class="line">        updateGuideInfo = json[<span class="string">'updateGuideInfo'</span>],</span><br><span class="line">        updateAdInfo = json[<span class="string">'updateAdInfo'</span>],</span><br><span class="line">        guideInfo = json[<span class="string">'guideInfo'</span>] == <span class="keyword">null</span></span><br><span class="line">            ? <span class="keyword">null</span></span><br><span class="line">            : SplashGuideModel.fromJson(json[<span class="string">'guideInfo'</span>]),</span><br><span class="line">        adInfo = json[<span class="string">'adInfo'</span>] == <span class="keyword">null</span></span><br><span class="line">            ? <span class="keyword">null</span></span><br><span class="line">            : SplashAdModel.fromJson(json[<span class="string">'adInfo'</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="keyword">dynamic</span>&gt; toJson() =&gt; &#123;</span><br><span class="line">        <span class="string">'version'</span>: version,</span><br><span class="line">        <span class="string">'nextShowGuide'</span>: nextShowGuide,</span><br><span class="line">        <span class="string">'updateGuideInfo'</span>: updateGuideInfo,</span><br><span class="line">        <span class="string">'updateAdInfo'</span>: updateAdInfo,</span><br><span class="line">        <span class="string">'guideInfo'</span>: guideInfo?.toJson(),</span><br><span class="line">        <span class="string">'adInfo'</span>: adInfo?.toJson(),</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="built_in">StringBuffer</span> sb = <span class="keyword">new</span> <span class="built_in">StringBuffer</span>(<span class="string">'&#123;'</span>);</span><br><span class="line">    sb.write(<span class="string">"\"version\":\"<span class="subst">$version</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">"\"nextShowGuide\":\"<span class="subst">$nextShowGuide</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"updateGuideInfo\":\"<span class="subst">$updateGuideInfo</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"updateAdInfo\":\"<span class="subst">$updateAdInfo</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"guideInfo\":\"<span class="subst">$guideInfo</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">",\"adInfo\":\"<span class="subst">$adInfo</span>\""</span>);</span><br><span class="line">    sb.write(<span class="string">'&#125;'</span>);</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>SP访问封装工具类（shared_preferences）：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:shared_preferences/shared_preferences.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// SpUtils spUtils = SpUtils();</span></span><br><span class="line"><span class="comment">/// or SpUtils spUtils = SpUtils.instance;</span></span><br><span class="line"><span class="comment">/// await spUtils.initializationDone;  //初始化完成</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpUtils</span> </span>&#123;</span><br><span class="line">  <span class="comment">//单体实例</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> SpUtils _singleton = <span class="keyword">new</span> SpUtils._internal();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//工厂模式 和 静态实例</span></span><br><span class="line">  <span class="keyword">factory</span> SpUtils() =&gt; _singleton;</span><br><span class="line">  <span class="keyword">static</span> SpUtils <span class="keyword">get</span> instance =&gt; _singleton;</span><br><span class="line"></span><br><span class="line">  Future _doneFuture;</span><br><span class="line">  Future <span class="keyword">get</span> initializationDone =&gt; _doneFuture;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//私有构造</span></span><br><span class="line">  SpUtils._internal() &#123;</span><br><span class="line">    _doneFuture = _init();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  SharedPreferences _prefs;</span><br><span class="line">  Future _init() <span class="keyword">async</span> &#123;</span><br><span class="line">    _prefs = <span class="keyword">await</span> SharedPreferences.getInstance();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putObject(<span class="built_in">String</span> key, <span class="built_in">Object</span> value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setString(key, value == <span class="keyword">null</span> ? <span class="string">""</span> : json.encode(value));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span> getObject(<span class="built_in">String</span> key) &#123;</span><br><span class="line">    <span class="built_in">String</span> _data = _prefs.getString(key);</span><br><span class="line">    <span class="keyword">return</span> (_data == <span class="keyword">null</span> || _data.isEmpty) ? <span class="keyword">null</span> : json.decode(_data);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putObjectList(<span class="built_in">String</span> key, <span class="built_in">List</span>&lt;<span class="built_in">Object</span>&gt; list) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; _dataList = list?.map((value) &#123;</span><br><span class="line">      <span class="keyword">return</span> json.encode(value);</span><br><span class="line">    &#125;)?.toList();</span><br><span class="line">    <span class="keyword">return</span> _prefs.setStringList(key, _dataList);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">List</span>&lt;<span class="built_in">Map</span>&gt; getObjectList(<span class="built_in">String</span> key) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; dataLis = _prefs.getStringList(key);</span><br><span class="line">    <span class="keyword">return</span> dataLis?.map((value) &#123;</span><br><span class="line">      <span class="built_in">Map</span> _dataMap = json.decode(value);</span><br><span class="line">      <span class="keyword">return</span> _dataMap;</span><br><span class="line">    &#125;)?.toList();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">String</span> getString(<span class="built_in">String</span> key, &#123;<span class="built_in">String</span> defaultValue: <span class="string">''</span>&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getString(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putString(<span class="built_in">String</span> key, <span class="built_in">String</span> value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setString(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">bool</span> getBool(<span class="built_in">String</span> key, &#123;<span class="built_in">bool</span> defaultValue: <span class="keyword">false</span>&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getBool(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putBool(<span class="built_in">String</span> key, <span class="built_in">bool</span> value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setBool(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">int</span> getInt(<span class="built_in">String</span> key, &#123;<span class="built_in">int</span> defaultValue: <span class="number">0</span>&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getInt(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putInt(<span class="built_in">String</span> key, <span class="built_in">int</span> value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setInt(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> getDouble(<span class="built_in">String</span> key, &#123;<span class="built_in">double</span> defaultValue: <span class="number">0.0</span>&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getDouble(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putDouble(<span class="built_in">String</span> key, <span class="built_in">double</span> value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setDouble(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; getStringList(<span class="built_in">String</span> key, &#123;<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; defaultValue: <span class="keyword">const</span> []&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getStringList(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; putStringList(<span class="built_in">String</span> key, <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; value) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.setStringList(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">dynamic</span> getDynamic(<span class="built_in">String</span> key, &#123;<span class="built_in">Object</span> defaultValue&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.<span class="keyword">get</span>(key) ?? defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">bool</span> haveKey(<span class="built_in">String</span> key) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getKeys().contains(key);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>&lt;<span class="built_in">String</span>&gt; getKeys() &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.getKeys();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; remove(<span class="built_in">String</span> key) &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.remove(key);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="built_in">bool</span>&gt; clear() &#123;</span><br><span class="line">    <span class="keyword">return</span> _prefs.clear();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现Dart语言模式的单体类（Singleton）模式，由于shared_preferences的初始化时异步的，需要调用方使用前通过<code>await spUtils.initializationDone;</code>完成初始化工作才能正常后续使用。（<strong>注意:</strong> 整体体验上这一点在Flutter和Dart语言设计上还是比较复杂的，对一些必须的系统依赖，需要额外关注异步和同步处理流程之间的衔接。）</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>封装Http库Dio的实现。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:io'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:dio/dio.dart'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="string">'package:dio/dio.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:cookie_jar/cookie_jar.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/foundation.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dio = <span class="keyword">new</span> MyDio();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDio</span> <span class="keyword">extends</span> <span class="title">Dio</span> </span>&#123;</span><br><span class="line">  MyDio([BaseOptions options]) : <span class="keyword">super</span>(options) &#123;</span><br><span class="line">    <span class="keyword">super</span>.interceptors</span><br><span class="line">      ..add(CookieManager(CookieJar()))</span><br><span class="line">      ..add(LogInterceptor(responseBody: <span class="keyword">true</span>));</span><br><span class="line">    (<span class="keyword">super</span>.transformer <span class="keyword">as</span> DefaultTransformer).jsonDecodeCallback = parseJson;</span><br><span class="line">    <span class="keyword">super</span>.options.receiveTimeout = <span class="number">15000</span>;</span><br><span class="line">    <span class="keyword">super</span>.options.validateStatus = (<span class="built_in">int</span> status) &#123;</span><br><span class="line">      <span class="keyword">return</span> status &gt;= HttpStatus.ok &amp;&amp; status &lt; HttpStatus.multipleChoices ||</span><br><span class="line">          status == HttpStatus.notModified;</span><br><span class="line">      <span class="comment">//return status &gt;= HttpStatus.ok &amp;&amp; status &lt; 300 || status == 304;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//TODO 认证Token追加到Header的处理</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Must be top-level function</span></span><br><span class="line">_parseAndDecode(<span class="built_in">String</span> response) &#123;</span><br><span class="line">  <span class="keyword">return</span> jsonDecode(response);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parseJson(<span class="built_in">String</span> text) &#123;</span><br><span class="line">  <span class="keyword">return</span> compute(_parseAndDecode, text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//全局方便约束的变量</span></span><br><span class="line"><span class="keyword">final</span> Options expectHttpOK = Options(</span><br><span class="line">  validateStatus: (<span class="built_in">int</span> status) &#123;</span><br><span class="line">    <span class="keyword">return</span> status == HttpStatus.ok; <span class="comment">//200</span></span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> Options expectHttpCreated = Options(</span><br><span class="line">  validateStatus: (<span class="built_in">int</span> status) &#123;</span><br><span class="line">    <span class="keyword">return</span> status == HttpStatus.created; <span class="comment">//201</span></span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>构建全局变量dio，实现了继承Dio子类MyDio，封装了通用初始化设置：Cookie处理、日志、JSON转换（reponse中的ContentType是application/json; charset=utf-8的时候，会自动把结果JSON字符串转换成JSON Map）、访问超时、默认返回有效状态校验。</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>封装后端数据访问API。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./http_dio.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/models/index.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashApi</span> </span>&#123;</span><br><span class="line">  <span class="comment">//Online JSON REST mock server, all data is in db.json</span></span><br><span class="line">  <span class="comment">//具有1分钟数据缓存，测试需要等待数据刷新</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> splash_base_url =</span><br><span class="line">      <span class="string">'https://my-json-server.typicode.com/dragonetail/flutterpoc'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> Future&lt;SplashModel&gt; getSplashMode([<span class="built_in">String</span> version = <span class="string">''</span>]) <span class="keyword">async</span> &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      Response response = <span class="keyword">await</span> dio.<span class="keyword">get</span>(</span><br><span class="line">        splash_base_url + <span class="string">'/splash'</span>,</span><br><span class="line">        queryParameters: &#123;<span class="string">"version"</span>: version&#125;,</span><br><span class="line">        options: expectHttpOK,</span><br><span class="line">      );</span><br><span class="line">      <span class="built_in">print</span>(response.data);</span><br><span class="line">      <span class="keyword">return</span> SplashModel.fromJson(response.data);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>封装后端访问数据的API实现。这里使用了<code>my-json-server.typicode.com</code>利用Github上的JSON文件实现模拟REST JSON访问请求。</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>封装Model数据的访问Service。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/models/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/common/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/api/index.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashService</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> splash_version = <span class="string">'splash.version'</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> splash_ad_mode = <span class="string">'splash.ad.mode'</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> splash_ad_model = <span class="string">'splash.ad.model'</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> splash_guide_model = <span class="string">'splash.guide.model'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> SpUtils spUtils = SpUtils.instance;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">bool</span> isSplashAdMode() &#123;</span><br><span class="line">    <span class="keyword">return</span> spUtils.getBool(splash_ad_mode);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> clearSplashAdMode() &#123;</span><br><span class="line">    spUtils.remove(splash_ad_mode);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> setSplashAdMode() &#123;</span><br><span class="line">    spUtils.putBool(splash_ad_mode, <span class="keyword">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> SplashAdModel getSplashAdModel([SplashAdModel defaultValue]) &#123;</span><br><span class="line">    <span class="built_in">String</span> _splashModel = spUtils.getString(splash_ad_model);</span><br><span class="line">    <span class="keyword">if</span> (CommonUtils.isNotEmpty(_splashModel)) &#123;</span><br><span class="line">      <span class="built_in">Map</span> userMap = json.decode(_splashModel);</span><br><span class="line">      <span class="keyword">return</span> SplashAdModel.fromJson(userMap);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> SplashGuideModel getSplashGuideModel([SplashGuideModel defaultValue]) &#123;</span><br><span class="line">    <span class="built_in">String</span> _splashModel = spUtils.getString(splash_guide_model);</span><br><span class="line">    <span class="keyword">if</span> (CommonUtils.isNotEmpty(_splashModel)) &#123;</span><br><span class="line">      <span class="built_in">Map</span> userMap = json.decode(_splashModel);</span><br><span class="line">      <span class="keyword">return</span> SplashGuideModel.fromJson(userMap);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> defaultValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> updateSplashInfo() &#123;</span><br><span class="line">    <span class="built_in">String</span> version = spUtils.getString(splash_version) ?? <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">    Future&lt;SplashModel&gt; future = SplashApi.getSplashMode(version);</span><br><span class="line">    future.then((SplashModel splash) &#123;</span><br><span class="line">      spUtils.putString(splash_version, splash.version ?? <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (splash.nextShowGuide) &#123;</span><br><span class="line">        clearSplashAdMode();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (splash.updateAdInfo &amp;&amp; splash.adInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="built_in">String</span> _jsonStr = json.encode(splash.adInfo.toJson());</span><br><span class="line">        spUtils.putString(splash_ad_model, _jsonStr);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (splash.updateGuideInfo &amp;&amp; splash.guideInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="built_in">String</span> _jsonStr = json.encode(splash.guideInfo.toJson());</span><br><span class="line">        spUtils.putString(splash_guide_model, _jsonStr);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, onError: (error) &#123;</span><br><span class="line">      <span class="built_in">print</span>(error);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了对SP数据访问的封装，并提供一个对API访问后端数据的更新到SP的封装。</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>构建BLOC，组合数据和状态控制。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:async'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/common/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/models/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/services/index.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashBloc</span> <span class="keyword">extends</span> <span class="title">BaseBloc</span>&lt;<span class="title">BaseEvent</span>, <span class="title">BaseState</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  BaseState <span class="keyword">get</span> initialState &#123;</span><br><span class="line">    _init();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> SplashInitialState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _init() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//等待SP初始化完毕</span></span><br><span class="line">    <span class="keyword">await</span> SpUtils.instance.initializationDone;</span><br><span class="line">    <span class="keyword">if</span> (SplashService.isSplashAdMode()) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dispatch(SplashAdEvent());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.dispatch(SplashGuideEvent());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3秒之后获取服务器最新的Splash信息，更新本地存储</span></span><br><span class="line">    Future.delayed(<span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">3</span>), () &#123;</span><br><span class="line">      SplashService.updateSplashInfo();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">Type</span>, <span class="built_in">Function</span>(BaseEvent)&gt; <span class="keyword">get</span> mapper =&gt; &#123;</span><br><span class="line">        SplashGuideEvent: _mapSplashGuideEventToState,</span><br><span class="line">        SplashAdEvent: _mapSplashAdEventToState,</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">  Stream&lt;BaseState&gt; _mapSplashGuideEventToState(BaseEvent event) <span class="keyword">async</span>* &#123;</span><br><span class="line">    SplashGuideModel splashGuideModel =</span><br><span class="line">        SplashService.getSplashGuideModel(SplashGuideModel(</span><br><span class="line">      isUrl: <span class="keyword">false</span>,</span><br><span class="line">      images: [</span><br><span class="line">        Utils.getImgPath(<span class="string">'guide1'</span>, format: <span class="string">'jpg'</span>),</span><br><span class="line">        Utils.getImgPath(<span class="string">'guide2'</span>, format: <span class="string">'jpg'</span>),</span><br><span class="line">        Utils.getImgPath(<span class="string">'guide3'</span>, format: <span class="string">'jpg'</span>),</span><br><span class="line">        Utils.getImgPath(<span class="string">'guide4'</span>, format: <span class="string">'jpg'</span>),</span><br><span class="line">      ],</span><br><span class="line">      textInfos: [</span><br><span class="line">        <span class="string">"在你需要的每个地方"</span>,</span><br><span class="line">        <span class="string">"载你去往每个地方"</span>,</span><br><span class="line">        <span class="string">"懂你，更懂你所行"</span>,</span><br><span class="line">        <span class="string">"因为在意，所以用心"</span>,</span><br><span class="line">      ],</span><br><span class="line">    ));</span><br><span class="line">    <span class="keyword">yield</span> SplashGuideState(splashGuideModel);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stream&lt;BaseState&gt; _mapSplashAdEventToState(BaseEvent event) <span class="keyword">async</span>* &#123;</span><br><span class="line">    SplashAdModel splashAdModel = SplashService.getSplashAdModel(SplashAdModel(</span><br><span class="line">      title: <span class="string">'带你去旅行'</span>,</span><br><span class="line">      imageUrl:</span><br><span class="line">          <span class="string">'https://raw.githubusercontent.com/dragonetail/flutterpoc/master/assets/images/3.0x/ad.jpg'</span>,</span><br><span class="line">      targetUrl: <span class="string">'https://github.com/dragonetail/flutterpoc/'</span>,</span><br><span class="line">    ));</span><br><span class="line">    <span class="keyword">yield</span> SplashAdState(splashAdModel);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashGuideEvent</span> <span class="keyword">extends</span> <span class="title">BaseEvent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashAdEvent</span> <span class="keyword">extends</span> <span class="title">BaseEvent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//State定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashInitialState</span> <span class="keyword">extends</span> <span class="title">BaseState</span> </span>&#123;</span><br><span class="line">  SplashInitialState() : <span class="keyword">super</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashGuideState</span> <span class="keyword">extends</span> <span class="title">BaseState</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> SplashGuideModel splashGuideModel;</span><br><span class="line"></span><br><span class="line">  SplashGuideState(<span class="keyword">this</span>.splashGuideModel) : <span class="keyword">super</span>([splashGuideModel]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashAdState</span> <span class="keyword">extends</span> <span class="title">BaseState</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> SplashAdModel splashAdModel;</span><br><span class="line"></span><br><span class="line">  SplashAdState(<span class="keyword">this</span>.splashAdModel) : <span class="keyword">super</span>([splashAdModel]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义了两个状态：SplashGuideEvent、SplashAdEvent；定义了三个状态：SplashInitialState、SplashGuideState、SplashAdState。</p>
+<p>通过Event和状态实现Bloc状态迁移控制。</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>Page页面构造，实现状态对应Widget的构建和组装。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter_bloc/flutter_bloc.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/common/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/models/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/blocs/index.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutterpoc/services/index.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  SplashPage(&#123;Key key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _SplashPageState createState() =&gt; _SplashPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_SplashPageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">SplashPage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> SplashBloc _splashBloc = SplashBloc();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: BlocBuilder&lt;BaseEvent, BaseState&gt;(</span><br><span class="line">        bloc: _splashBloc,</span><br><span class="line">        builder: (BuildContext context, BaseState baseState) &#123;</span><br><span class="line">          <span class="keyword">if</span> (baseState <span class="keyword">is</span> SplashGuideState) &#123;</span><br><span class="line">            <span class="keyword">return</span> buildSplashGuideWidget(baseState);</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (baseState <span class="keyword">is</span> SplashAdState) &#123;</span><br><span class="line">            <span class="keyword">return</span> buildSplashAdWidget(baseState);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Container();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget buildSplashAdWidget(SplashAdState state) &#123;</span><br><span class="line">    SplashAdModel splashAdModel = state.splashAdModel;</span><br><span class="line">    <span class="keyword">return</span> SplashADPage(</span><br><span class="line">      adImageUrl: splashAdModel.imageUrl,</span><br><span class="line">      skipActionTitle: <span class="string">'跳过'</span>,</span><br><span class="line">      skipAction: _skipAction,</span><br><span class="line">      adAction: _adAction,</span><br><span class="line">      count: <span class="number">3</span>,</span><br><span class="line">      logoImagePath: Utils.getImgPath(<span class="string">'splash_logo'</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget buildSplashGuideWidget(SplashGuideState state) &#123;</span><br><span class="line">    SplashGuideModel splashGuideModel = state.splashGuideModel;</span><br><span class="line">    <span class="keyword">return</span> SplashGuidePage(</span><br><span class="line">        images: splashGuideModel.images,</span><br><span class="line">        textInfos: splashGuideModel.textInfos,</span><br><span class="line">        nextActionTitle: <span class="string">'立即启程'</span>,</span><br><span class="line">        nextAction: _nextActionFromGuide);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _nextActionFromGuide() &#123;</span><br><span class="line">    SplashService.setSplashAdMode();</span><br><span class="line">    Navigator.of(context).pushReplacementNamed(<span class="string">'/Main'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _skipAction() &#123;</span><br><span class="line">    Navigator.of(context).pushReplacementNamed(<span class="string">'/Main'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _adAction() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!(_splashBloc.currentState <span class="keyword">is</span> SplashAdState)) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    SplashAdModel splashAdModel =</span><br><span class="line">        (_splashBloc.currentState <span class="keyword">as</span> SplashAdState).splashAdModel;</span><br><span class="line"></span><br><span class="line">    Navigator.of(context).pushReplacementNamed(<span class="string">'/Main'</span>);</span><br><span class="line">    NavigatorUtil.pushWeb(context,</span><br><span class="line">        title: splashAdModel.title, url: splashAdModel.targetUrl);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    _splashBloc.dispose();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="8">
+<li><p>APP入口定义SplashPage的使用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      routes: &#123;</span><br><span class="line">        <span class="string">'/Main'</span>: (ctx) =&gt; CounterPage(),</span><br><span class="line">      &#125;,</span><br><span class="line">      home: SplashPage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="9">
+<li>Splash共通组件： SplashGuidePage、SplashADPage，构建对应具体画面布局和内容显示。代码请直接查看Github。</li>
+</ol>
+<ol start="10">
+<li>结论： 在整体上，使用Bloc架构、包括SP本地存储、HTTP API远程访问在一起的Splash实现，整体组件隔离还是相当清晰简单的。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+            <a href="/tags/Bloc/" rel="tag"># Bloc</a>
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/启动页/" rel="tag"># 启动页</a>
+          
+            <a href="/tags/Splash-Page/" rel="tag"># Splash Page</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/08/Flutter的Bloc工程化系列2/" rel="next" title="Flutter的Bloc工程化系列2">
+                <i class="fa fa-chevron-left"></i> Flutter的Bloc工程化系列2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blackharry1.png" alt="黑哈">
+            
+              <p class="site-author-name" itemprop="name">黑哈</p>
+              <div class="site-description motion-element" itemprop="description">~黑哈等你回家~</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dragonetail" title="GitHub &rarr; https://github.com/dragonetail" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#APP启动页（Splash-Page）"><span class="nav-number">1.</span> <span class="nav-text">APP启动页（Splash Page）</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黑哈</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
