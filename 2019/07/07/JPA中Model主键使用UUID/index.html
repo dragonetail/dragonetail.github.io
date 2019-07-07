@@ -106,25 +106,25 @@
 
 
 
-  <meta name="description" content="早上通过微信看了这篇【HTTP3 为什么比 HTTP2 靠谱？ | 技术头条】，标题有点大，内容却是十分充实细腻的。文章最后总结主要说了三个问题：  HTTP/1.x 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷； HTTP/2 通过多路复用、二进制流、Header 压缩等等技术，极大地提高了性能，但是还是存在着问题的； QUIC 基于 UDP 实现，是 HTTP/3 中的底层支撑协议">
-<meta name="keywords" content="HTTP,TCP">
+  <meta name="description" content="前言使用Spring JPA项目进行开发，有关Model的设计，PK如何选择一直是个课题，特别对于集群和微服务的部署架构引入进来之后，一直在找一个平衡的解决方案，最近一个项目中又深入讨论了这个问题，参考国外一个博客https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。 关于数据库PK和UUID选择(MySQL) 参考翻译自：h">
+<meta name="keywords" content="Spring,JPA,UUID">
 <meta property="og:type" content="article">
-<meta property="og:title" content="看HTTP演变论基础科技发展与创新">
-<meta property="og:url" content="http://dragonetail.github.io/2019/03/07/看HTTP演变论基础科技发展与创新/index.html">
+<meta property="og:title" content="JPA中Model主键使用UUID">
+<meta property="og:url" content="http://dragonetail.github.io/2019/07/07/JPA中Model主键使用UUID/index.html">
 <meta property="og:site_name" content="微笑卡卡西">
-<meta property="og:description" content="早上通过微信看了这篇【HTTP3 为什么比 HTTP2 靠谱？ | 技术头条】，标题有点大，内容却是十分充实细腻的。文章最后总结主要说了三个问题：  HTTP/1.x 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷； HTTP/2 通过多路复用、二进制流、Header 压缩等等技术，极大地提高了性能，但是还是存在着问题的； QUIC 基于 UDP 实现，是 HTTP/3 中的底层支撑协议">
+<meta property="og:description" content="前言使用Spring JPA项目进行开发，有关Model的设计，PK如何选择一直是个课题，特别对于集群和微服务的部署架构引入进来之后，一直在找一个平衡的解决方案，最近一个项目中又深入讨论了这个问题，参考国外一个博客https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。 关于数据库PK和UUID选择(MySQL) 参考翻译自：h">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-08T00:59:19.946Z">
+<meta property="og:updated_time" content="2019-07-07T10:04:38.643Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="看HTTP演变论基础科技发展与创新">
-<meta name="twitter:description" content="早上通过微信看了这篇【HTTP3 为什么比 HTTP2 靠谱？ | 技术头条】，标题有点大，内容却是十分充实细腻的。文章最后总结主要说了三个问题：  HTTP/1.x 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷； HTTP/2 通过多路复用、二进制流、Header 压缩等等技术，极大地提高了性能，但是还是存在着问题的； QUIC 基于 UDP 实现，是 HTTP/3 中的底层支撑协议">
+<meta name="twitter:title" content="JPA中Model主键使用UUID">
+<meta name="twitter:description" content="前言使用Spring JPA项目进行开发，有关Model的设计，PK如何选择一直是个课题，特别对于集群和微服务的部署架构引入进来之后，一直在找一个平衡的解决方案，最近一个项目中又深入讨论了这个问题，参考国外一个博客https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。 关于数据库PK和UUID选择(MySQL) 参考翻译自：h">
 
 
 
 
 
 
-  <link rel="canonical" href="http://dragonetail.github.io/2019/03/07/看HTTP演变论基础科技发展与创新/">
+  <link rel="canonical" href="http://dragonetail.github.io/2019/07/07/JPA中Model主键使用UUID/">
 
 
 
@@ -134,7 +134,7 @@
   };
 </script>
 
-  <title>看HTTP演变论基础科技发展与创新 | 微笑卡卡西</title>
+  <title>JPA中Model主键使用UUID | 微笑卡卡西</title>
   
 
 
@@ -354,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/07/看HTTP演变论基础科技发展与创新/">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/07/07/JPA中Model主键使用UUID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黑哈">
@@ -371,7 +371,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">看HTTP演变论基础科技发展与创新
+          <h2 class="post-title" itemprop="name headline">JPA中Model主键使用UUID
 
               
             
@@ -397,24 +397,12 @@
                 
               
 
-              <time title="创建时间：2019-03-07 16:35:48" itemprop="dateCreated datePublished" datetime="2019-03-07T16:35:48+08:00">2019-03-07</time>
+              <time title="创建时间：2019-07-07 17:43:51 / 修改时间：18:04:38" itemprop="dateCreated datePublished" datetime="2019-07-07T17:43:51+08:00">2019-07-07</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
               
             
           </span>
@@ -431,7 +419,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
@@ -466,24 +454,61 @@
       
 
       
-        <p>早上通过微信看了这篇【<a href="https://mp.weixin.qq.com/s/EYRFmYdNm63DcjjZcancLw" target="_blank" rel="noopener">HTTP3 为什么比 HTTP2 靠谱？ | 技术头条</a>】，标题有点大，内容却是十分充实细腻的。文章最后总结主要说了三个问题：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Spring JPA项目进行开发，有关Model的设计，PK如何选择一直是个课题，特别对于集群和微服务的部署架构引入进来之后，一直在找一个平衡的解决方案，最近一个项目中又深入讨论了这个问题，参考国外一个博客<a href="https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。" target="_blank" rel="noopener">https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。</a></p>
+<h1 id="关于数据库PK和UUID选择-MySQL"><a href="#关于数据库PK和UUID选择-MySQL" class="headerlink" title="关于数据库PK和UUID选择(MySQL)"></a>关于数据库PK和UUID选择(MySQL)</h1><ul>
+<li><p>参考翻译自：<a href="https://phauer.com/2016/uuids-hibernate-mysql/" target="_blank" rel="noopener">https://phauer.com/2016/uuids-hibernate-mysql/</a></p>
+</li>
+<li><p>目的：考量数据库PK的选择和UUID的使用</p>
+</li>
+<li><p><strong>使用UUID的优势：</strong></p>
 <ul>
-<li>HTTP/1.x 有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷；</li>
-<li>HTTP/2 通过多路复用、二进制流、Header 压缩等等技术，极大地提高了性能，但是还是存在着问题的；</li>
-<li>QUIC 基于 UDP 实现，是 HTTP/3 中的底层支撑协议，该协议基于 UDP，又取了 TCP 中的精华，实现了即快又可靠的协议。</li>
+<li>UUID全局唯一；</li>
+<li>跨数据库唯一，合并数据，没有主键冲突；</li>
+<li>分布式复制和存储(分布式数据库)方便简单；</li>
+<li>可以随时生成UUID，不需要数据库支撑，方便测试和批量数据生成；</li>
+<li>自动增量ID容易猜测会导致安全问题。</li>
 </ul>
-<p>但是整篇细读看下来，文章隐藏了进一步的几个要点或问题可以进一步阐述：</p>
+</li>
+<li><p><strong>使用UUID的缺点：</strong></p>
 <ul>
-<li>HTTP/1.x 各种问题，但是是目前网络基石，不过可以简单替换</li>
-<li>HTTP/2标准于2015年5月以RFC 7540正式发表，根据<a href="https://zh.wikipedia.org/w/index.php?title=W3Techs&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">W3Techs</a>的数据，在2017年5月，在排名前一千万的网站中，有13.7%支持了HTTP/2，尚远远没有普及</li>
-<li>QUIC也就是HTTP/3，目前貌似只有一个Go开发的Caddy未来服务器支持，客户端应该也只有Chrome一家吧，不过看过一些文章，貌似稳定性还需要一些时间</li>
-<li>HTTP是这个样子，可以持续发展进化，虽然代价昂贵</li>
-<li>但是TCP、UDP这两个基础协议目前尚无持续发展的规划</li>
-<li>SSH貌似前一段看已过一个替代方案，忘记了名字</li>
+<li>数据库索引的空间大小增大；单个UUID需要16个字节，普通int只需要4个字节；</li>
+<li>使用数据库SQL进行特定数据查询时会更加麻烦，下面会详细描述；</li>
+<li>REST接口中使用UUID会增加payload的大小。</li>
 </ul>
-<p>细细看来，其实说明了一个基本问题： 越是基础的，越是被广泛应用的，替换更新的代价就越高。</p>
-<p>再细看一下，一个产品的规划、上线、推广、升级，一旦到了一定规模，其维护、升级的成本会成级数上涨。但结合商务的同学想法，一个产品要快快下海试水，能不淹死才能继续投入，想想也没有错，商务技术互相商量平衡吧。就怕前面商务铺的大了，技术投入深了，有了基础了，需要在进一步加大投入的时候，商务说看不到岸了，模模糊糊停了，很想学学BigBang中那么直白的说，不过还是算了。</p>
-<p>总结一下，上面的文章值得细细看，结束。（回头看看标题，貌似标准的乱水😂）</p>
+</li>
+<li><p><strong>使用UUID创建表：</strong></p>
+<ul>
+<li>不建议使用<code>VARCHAR(36)</code>作为UUID数据类型，建议使用<code>BINARY(16)</code>作为字段类型；会降低空间占用，16个字节，没有字符串中的中线字符，数据库索引也会更快；</li>
+<li>不过，这样会造成SQL查询稍稍复杂些。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product (</span><br><span class="line">   <span class="string">`id`</span> <span class="built_in">BINARY</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> primary <span class="keyword">key</span></span><br><span class="line">   ,<span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JPA映射：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@GeneratedValue</span>(generator = <span class="string">"uuid2"</span>)</span><br><span class="line"><span class="meta">@GenericGenerator</span>(name = <span class="string">"uuid2"</span>, strategy = <span class="string">"uuid2"</span>)</span><br><span class="line"><span class="meta">@Column</span>(columnDefinition = <span class="string">"BINARY(16)"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>SQL脚本生成UUID</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">uuid</span>(); <span class="comment">/*dbe07414-49d1-11e6-b7a7-0242ac140002*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>插入UUID数据</strong></p>
+<ul>
+<li>uuid()函数返回字符串，包含中线字符，需要使用replace去掉中线字符，然后使用unhex()函数转换十六进制可看字符到UUID数值二进制，最终存入<code>BINARY(16)</code>字段中。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> product <span class="keyword">VALUES</span>(</span><br><span class="line">   <span class="keyword">unhex</span>(<span class="keyword">replace</span>(<span class="keyword">uuid</span>(), <span class="string">'-'</span>, <span class="string">''</span>))</span><br><span class="line">   , <span class="string">"car"</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查询UUID</strong></p>
+<ul>
+<li>使用hex()函数转换UUID到十六进制字符表示。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>, <span class="keyword">name</span> <span class="keyword">FROM</span> product;</span><br><span class="line"><span class="comment">/* BLOB, 'car' */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product;</span><br><span class="line"><span class="comment">/* 'BFF641BA9F3A4584A1BA53824E7AB3B9', 'car' */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过特定UUID进行指定Row数据查询 */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product</span><br><span class="line">   <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="keyword">unhex</span>(<span class="string">'BFF641BA9F3A4584A1BA53824E7AB3B9'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* or if you have a UUID with dashes: */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product</span><br><span class="line">   <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="keyword">unhex</span>(<span class="keyword">replace</span>(<span class="string">"2b08e375-275d-473e-910d-32700e34b61a"</span>, <span class="string">'-'</span>, <span class="string">''</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>小结</strong></p>
+<ul>
+<li>在工程的角度，使用UUID作为Model的主键，应该是利大于弊；</li>
+<li>使用<code>BINARY(16)</code>存储，性能损耗在可接受范围；</li>
+<li>对于SQL层面操作的不便，个人认为可以忍受(不过不同DB操作语言可能会有差异)。</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -507,9 +532,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
-            <a href="/tags/TCP/" rel="tag"># TCP</a>
+            <a href="/tags/JPA/" rel="tag"># JPA</a>
+          
+            <a href="/tags/UUID/" rel="tag"># UUID</a>
           
         </div>
       
@@ -522,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/简历/" rel="next" title="简历">
-                <i class="fa fa-chevron-left"></i> 简历
+              <a href="/2019/05/31/Flutter与vscode分析异常错误处理/" rel="next" title="Flutter与vscode分析异常错误处理">
+                <i class="fa fa-chevron-left"></i> Flutter与vscode分析异常错误处理
               </a>
             
           </div>
@@ -531,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/07/Spring-JWT实现微服务集群/" rel="prev" title="Spring+JWT实现微服务集群">
-                Spring+JWT实现微服务集群 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -742,6 +774,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于数据库PK和UUID选择-MySQL"><span class="nav-number">2.</span> <span class="nav-text">关于数据库PK和UUID选择(MySQL)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

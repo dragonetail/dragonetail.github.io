@@ -354,6 +354,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/07/07/JPA中Model主键使用UUID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/07/JPA中Model主键使用UUID/" class="post-title-link" itemprop="url">JPA中Model主键使用UUID</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-07 17:43:51 / 修改时间：18:04:38" itemprop="dateCreated datePublished" datetime="2019-07-07T17:43:51+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Spring JPA项目进行开发，有关Model的设计，PK如何选择一直是个课题，特别对于集群和微服务的部署架构引入进来之后，一直在找一个平衡的解决方案，最近一个项目中又深入讨论了这个问题，参考国外一个博客<a href="https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。" target="_blank" rel="noopener">https://phauer.com/2016/uuids-hibernate-mysql/的内容，翻译整理如下，供以后参考。</a></p>
+<h1 id="关于数据库PK和UUID选择-MySQL"><a href="#关于数据库PK和UUID选择-MySQL" class="headerlink" title="关于数据库PK和UUID选择(MySQL)"></a>关于数据库PK和UUID选择(MySQL)</h1><ul>
+<li><p>参考翻译自：<a href="https://phauer.com/2016/uuids-hibernate-mysql/" target="_blank" rel="noopener">https://phauer.com/2016/uuids-hibernate-mysql/</a></p>
+</li>
+<li><p>目的：考量数据库PK的选择和UUID的使用</p>
+</li>
+<li><p><strong>使用UUID的优势：</strong></p>
+<ul>
+<li>UUID全局唯一；</li>
+<li>跨数据库唯一，合并数据，没有主键冲突；</li>
+<li>分布式复制和存储(分布式数据库)方便简单；</li>
+<li>可以随时生成UUID，不需要数据库支撑，方便测试和批量数据生成；</li>
+<li>自动增量ID容易猜测会导致安全问题。</li>
+</ul>
+</li>
+<li><p><strong>使用UUID的缺点：</strong></p>
+<ul>
+<li>数据库索引的空间大小增大；单个UUID需要16个字节，普通int只需要4个字节；</li>
+<li>使用数据库SQL进行特定数据查询时会更加麻烦，下面会详细描述；</li>
+<li>REST接口中使用UUID会增加payload的大小。</li>
+</ul>
+</li>
+<li><p><strong>使用UUID创建表：</strong></p>
+<ul>
+<li>不建议使用<code>VARCHAR(36)</code>作为UUID数据类型，建议使用<code>BINARY(16)</code>作为字段类型；会降低空间占用，16个字节，没有字符串中的中线字符，数据库索引也会更快；</li>
+<li>不过，这样会造成SQL查询稍稍复杂些。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product (</span><br><span class="line">   <span class="string">`id`</span> <span class="built_in">BINARY</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> primary <span class="keyword">key</span></span><br><span class="line">   ,<span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JPA映射：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Id</span></span><br><span class="line"><span class="meta">@GeneratedValue</span>(generator = <span class="string">"uuid2"</span>)</span><br><span class="line"><span class="meta">@GenericGenerator</span>(name = <span class="string">"uuid2"</span>, strategy = <span class="string">"uuid2"</span>)</span><br><span class="line"><span class="meta">@Column</span>(columnDefinition = <span class="string">"BINARY(16)"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>SQL脚本生成UUID</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">uuid</span>(); <span class="comment">/*dbe07414-49d1-11e6-b7a7-0242ac140002*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>插入UUID数据</strong></p>
+<ul>
+<li>uuid()函数返回字符串，包含中线字符，需要使用replace去掉中线字符，然后使用unhex()函数转换十六进制可看字符到UUID数值二进制，最终存入<code>BINARY(16)</code>字段中。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> product <span class="keyword">VALUES</span>(</span><br><span class="line">   <span class="keyword">unhex</span>(<span class="keyword">replace</span>(<span class="keyword">uuid</span>(), <span class="string">'-'</span>, <span class="string">''</span>))</span><br><span class="line">   , <span class="string">"car"</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查询UUID</strong></p>
+<ul>
+<li>使用hex()函数转换UUID到十六进制字符表示。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>, <span class="keyword">name</span> <span class="keyword">FROM</span> product;</span><br><span class="line"><span class="comment">/* BLOB, 'car' */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product;</span><br><span class="line"><span class="comment">/* 'BFF641BA9F3A4584A1BA53824E7AB3B9', 'car' */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过特定UUID进行指定Row数据查询 */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product</span><br><span class="line">   <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="keyword">unhex</span>(<span class="string">'BFF641BA9F3A4584A1BA53824E7AB3B9'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* or if you have a UUID with dashes: */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">hex</span>(<span class="keyword">id</span>), <span class="keyword">name</span> <span class="keyword">FROM</span> product</span><br><span class="line">   <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="keyword">unhex</span>(<span class="keyword">replace</span>(<span class="string">"2b08e375-275d-473e-910d-32700e34b61a"</span>, <span class="string">'-'</span>, <span class="string">''</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>小结</strong></p>
+<ul>
+<li>在工程的角度，使用UUID作为Model的主键，应该是利大于弊；</li>
+<li>使用<code>BINARY(16)</code>存储，性能损耗在可接受范围；</li>
+<li>对于SQL层面操作的不便，个人认为可以忍受(不过不同DB操作语言可能会有差异)。</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/05/31/Flutter与vscode分析异常错误处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2286,188 +2501,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/06/电影性能/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黑哈">
-      <meta itemprop="description" content="~黑哈等你回家~">
-      <meta itemprop="image" content="/images/blackharry1.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="微笑卡卡西">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/电影性能/" class="post-title-link" itemprop="url">电影性能</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 15:44:44" itemprop="dateCreated datePublished" datetime="2019-03-06T15:44:44+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-08 08:59:19" itemprop="dateModified" datetime="2019-04-08T08:59:19+08:00">2019-04-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/项目回顾/" itemprop="url" rel="index"><span itemprop="name">项目回顾</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><ul>
-<li>20+物理机集群</li>
-<li>80+虚拟机组成的业务集群</li>
-<li>60亿+ HBase数据</li>
-<li>10亿+ Impala数据</li>
-<li>10000+ 实时数据上报方</li>
-<li>1000万+ 周末日观影（票房3亿）</li>
-<li>1亿+ 日接口交易量</li>
-<li>6万+ 平日高峰交易每分钟（1000+ 每秒）</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2516,7 +2549,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2618,7 +2651,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
