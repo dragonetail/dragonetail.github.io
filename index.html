@@ -354,6 +354,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/07/16/BACnet-101-BACnet介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑哈">
+      <meta itemprop="description" content="~黑哈等你回家~">
+      <meta itemprop="image" content="/images/blackharry1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="微笑卡卡西">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/16/BACnet-101-BACnet介绍/" class="post-title-link" itemprop="url">BACnet 101 - BACnet介绍</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-16 11:07:26 / 修改时间：11:09:14" itemprop="dateCreated datePublished" datetime="2019-07-16T11:07:26+08:00">2019-07-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IoT/" itemprop="url" rel="index"><span itemprop="name">IoT</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IoT/BACnet/" itemprop="url" rel="index"><span itemprop="name">BACnet</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="BACnet-101-BACnet介绍"><a href="#BACnet-101-BACnet介绍" class="headerlink" title="BACnet 101 - BACnet介绍"></a>BACnet 101 - BACnet介绍</h1><p>Ref： <a href="https://www.csimn.com/CSI_pages/BACnet101.html" target="_blank" rel="noopener">https://www.csimn.com/CSI_pages/BACnet101.html</a></p>
+<h3 id="BACnet概要视图"><a href="#BACnet概要视图" class="headerlink" title="BACnet概要视图"></a>BACnet概要视图</h3><p>BACnet代表建筑自动化和控制网络。它由ASHRAE于1996年正式发布，并已被批准为ISO标准16454-5，并正在成为欧盟的标准。</p>
+<p>BACnet IP和BACnet MS/TP是标识用于在网络上传输BACnet数据包的物理层(IP或MS/TP)的名称。至少还定义了另外三个物理层，并在一定程度上使用它们。我们将在本网站上讨论IP和MS/TP，因为这是两个最常见的物理层，而且这两个物理层是控制解决方案在其产品线中支持的。</p>
+<p><font color="blue">Modbus谈论寄存器，BACnet谈论对象和对象属性。</font>例如，传感器就是一个对象。如果它的属性是它的现值，这个属性在BACnet中被称为，现值属性（The Present Value property）。传感器很可能是两种对象类型之一:模拟输入(温度、湿度等)或二进制输入(感应传感器、开关等)。最常用的属性是现值，但还需要其他属性。其他属性包括状态标志(故障、服务停止)、可靠性，以及其他一些可选的属性，如高限制和低限制。</p>
+<p>更多更好的Backnet资料，请参考<a href="http://www.bacnet.org](http://www.bacnet.org/Tutorial/index.html)" target="_blank" rel="noopener">www.bacnet.org](http://www.bacnet.org/Tutorial/index.html)</a>.</p>
+<h3 id="BACnet的基础背景知识"><a href="#BACnet的基础背景知识" class="headerlink" title="BACnet的基础背景知识"></a>BACnet的基础背景知识</h3><p>BACnet设备在网络上定义为“对象”的集合Oobjecs）。典型的对象包括模拟输入、模拟输出、二进制输入、二进制输出和更复杂的对象，如调度。主要通过网络对对象的属性读写进行消息处理。模拟输入最常引用的属性是“现值（Present Value）”，这通常意味着来自传感器或物理设备的数据。与模拟输入对象相关的其他属性，例如，包括故障状态、可靠性、对象名称、最小和最大限制等。BACnet协议标准为每个对象类型定义了必需的和可选的属性。BACnet设备的制造商文档将列出设备中包含哪些对象类型，以及每个对象中包含哪些可选属性。</p>
+<p>除了对象的定义，BACnet协议还定义了“服务（Services）”。这些服务包括对象访问服务、警报和事件服务、文件访问服务等等。对象访问服务是最常用的，因为它们提供对对象属性的基本“读/写”访问。</p>
+<p>访问对象属性需要指定以下参数:</p>
+<ul>
+<li><p>设备实例(即，网络上的哪个设备)</p>
+</li>
+<li><p>对象类型(模拟输入、二进制输入等)</p>
+</li>
+<li><p>对象实例(即，哪个模拟输入)</p>
+</li>
+<li><p>属性(当前值、对象名称、状态标志等)</p>
+</li>
+</ul>
+<p>输入对象（Input Objects）很简单，它们只有一个与之关联的“现值”。输出对象（Output Objects）被称为“可指令的（commandable）”，它们更加有趣。因为这个创造了多个算法一起控制一个对象的可能，通过有优先级的指令请求（Command Request）来控制对象，多个指令的时候最高优先级的指令有效；当高优先级指令被取消（Relinquished）时，次一优先级的指令接替生效。对象会维护一个指令优先队列来管理所有的指令（共有16个优先级别）。</p>
+<p>因此，对于输出对象的操作需要额外两个参数：</p>
+<ul>
+<li>指令优先级</li>
+<li>对应优先级上指令的级别</li>
+</ul>
+<p>对一个”可指令的”对象去读它的现值(Present Value)，则这个读的指令将会是最高优先级的，并且不可被取消。对于其他指令，通过向可执行的对象发送”取消(relinquish)”即可（这个应该是一个特殊的访问方式，应该需要制定之前的指令信息才行）。</p>
+<p><strong>BACnet物理层（Physical Layer）</strong></p>
+<p>BACnet协议定义了用于物理电信号、寻址、网络访问、错误检查、流控、表示和消息格式等。该协议侧重于构建自动化应用程序。</p>
+<p><strong>BACnet IP</strong></p>
+<p>BACnet IP使用一个标准的UDP/IP堆栈来发送和接收消息(参见下面UDP/IP的定义)。在大多数情况下，可以在MS/TP链接上找到的包被封装在UDP/IP包中，称为BACnet IP。设备使用IP地址和以太网MAC地址，就像其他UDP/IP网络设备一样。没有主从令牌传递的概念，因为以太网本质上是自动对等的。设备只是随意地将数据传输给它们的目标接收方，让以太网根据需要处理数据包冲突和重试。</p>
+<p><strong>BACnet MS/TP</strong></p>
+<p>MS/TP代表主从令牌传递。当链路上的每个设备都有令牌时，它被认为是“主设备”。如果不需要立即使用令牌，则需要将令牌传递给下一个设备。这是“令牌传递”部分。链路上当前没有令牌的所有设备都被视为从设备，并被期望侦听当前主设备可能为它提供的任何消息。因为所有的设备轮流成为主设备，所以这个链接实际上是点对点的。</p>
+<p><strong>BACnet Application Layer</strong></p>
+<p>真正有意思的地方，所有消息处理都在应用层处理，包括设备寻址。IP地址将通过UDP/IP堆栈层获得一个BACnet包。然后应用程序层决定如何处理BACnet消息。可能的消息类型有一个完整的列表，但是最常用的是“读取现值（read present value property）”，另一个“最常用”的是COV通知(值的更改，Change of Value)。</p>
+<hr>
+<p><strong>BACnet术语表</strong></p>
+<p><strong>UDP/IP</strong> - 大家都听说过TCP/IP，与这个一样，UDP/IP也是一个常见的以太网协议栈，不同之处在于TCP是一个”连接(connection)”协议，而UDP是一个”无连接(connectionless)”协议；TCP协议更安全，但为了连接需要额外的开销来确保数据包的安全送达，而UDP速度和效率更高。BACNet IP使用UDP协议，主要原因是BACnet的消息通常都很短，并且彼此独立没有依赖。</p>
+<p><strong>Object</strong> - 构成BACnet设备的传感器，执行器或其他功能元素的引用概念，属于协议的一部分；常用的对象有模拟输入对象和模拟输出对象。</p>
+<p><strong>Object Property</strong> - 每个对象都具有BACnet协议所需的几个属性。最常用的属性是现值。其他常见属性包括可靠性和状态标志。对象的可选属性，如模拟输入，包括最小和最大范围，高和低的限制，等等。</p>
+<p><strong>COV</strong> - Change Of Value - 当设备对象的属性值根据默认参数、或者写指令变化的时候，可以通过向设备订阅COV通知来获取COV通知消息（意译，需要跟进测试确认）。</p>
+<p><strong>BBMD</strong> - BACnet/IP广播管理设备(BACnet/IP Broadcast Management Device)，用于跨大型网络的BACnet实现。BACnet典型的应用场景在一个园区，尽管在协议涉及上支持广域全国范围的网络建设。BACnet设备的运行，需要广播机制来广播消息。标准的IP技术在路由网关规定是不转发广播消息的，BBMD设备在多个不同网络域(IP子网)中进行广播转发到本地网络，来实现跨IP网络的BACnet/IP网络广播实现。IP域(子网中)只有一个设备充当BBMD即可实现广播消息的转发。(目前场景中，如果只在一个子网中建设BACnet，不用考虑BBMD的构建)</p>
+<p><strong>MS/TP Mac Address  or Station ID</strong> - 这是一个8位数字，对于主/从设备来说是0-127。此Mac地址在RS-485链路上本地使用，用于链路上的物理地址设备，不经过路由器。它相当于Modbus RTU从地址。</p>
+<p><strong>MS/TP Max Masters</strong> - 通过发起”主设备投票(poll for master)的活动来决定MS/TP Link网络中有多少设备可以作为主设备，如果所有的设备都不匹配，会发生不可预期问题。</p>
+<p><strong>BACnet IP Addressing</strong> - 标准以太网IP地址用于标识IP网络上的设备。IP地址用于物理路由网络上的消息，同时用BACnet设备实例标识BACnet系统中的设备。</p>
+<p><strong>Device Instance</strong> - 这是与BACnet有关的逻辑地址。无论是在MS/TP链路还是IP网络上，设备实例在所有子网和路由链路上都是惟一的。(补充：访问设备的参数顺序为：设备示例、对象类型、对象示例、属性)</p>
+<p><strong>Client/Server versus Master/Slave</strong> - 我们倾向于在MS/TP级别考虑主服务器和从服务器，当我们讨论IP网络时，我们开始考虑客户机/服务器。在功能上，客户机和主服务器是同步的，而服务器和从服务器是同步的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/07/07/JPA中Model主键使用UUID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2271,236 +2483,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dragonetail.github.io/2019/03/07/简历/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黑哈">
-      <meta itemprop="description" content="~黑哈等你回家~">
-      <meta itemprop="image" content="/images/blackharry1.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="微笑卡卡西">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/07/简历/" class="post-title-link" itemprop="url">简历</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-07 09:40:21" itemprop="dateCreated datePublished" datetime="2019-03-07T09:40:21+08:00">2019-03-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-22 09:36:17" itemprop="dateModified" datetime="2019-04-22T09:36:17+08:00">2019-04-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/简历/" itemprop="url" rel="index"><span itemprop="name">简历</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul>
-<li>手机：135-9️⃣1️⃣7️⃣9️⃣-9735（已防爬虫处理，部分数字图片化处理）</li>
-<li>Email：<a href="mailto:dragonetail@gmail.com" target="_blank" rel="noopener">dragonetail@gmail.com</a> </li>
-<li>微信号：同手机号</li>
-</ul>
-<hr>
-<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><ul>
-<li>孙玉新/男/1976 </li>
-<li>本科/沈阳航空工业学院/计算机 </li>
-<li>期望职位：技术总监，系统架构师</li>
-<li>期望城市：大连，深圳，北京</li>
-<li>Github：<a href="http://github.com/dragonetail" target="_blank" rel="noopener">http://github.com/dragonetail</a> </li>
-<li>本简历网址： <a href="http://www.blackharry.com/2019/03/07/简历/" target="_blank" rel="noopener">http://www.blackharry.com/2019/03/07/简历/</a></li>
-</ul>
-<hr>
-<h1 id="经验简介"><a href="#经验简介" class="headerlink" title="经验简介"></a>经验简介</h1><p>专注于IT行业前沿技术研究和研发管理。多年云计算架构设计和云平台产品研发经验；多年参与对云服务相关应用产品研发及管理工作，具有微服务、大数据、区块链等应用架构的设计、研发和实施经验。</p>
-<hr>
-<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="北京力鼎创软-（-2016年4月-2019年3月-，技术总监）"><a href="#北京力鼎创软-（-2016年4月-2019年3月-，技术总监）" class="headerlink" title="北京力鼎创软 （ 2016年4月 ~ 2019年3月 ，技术总监）"></a>北京力鼎创软 （ 2016年4月 ~ 2019年3月 ，技术总监）</h2><h3 id="全国电影票房管理系统"><a href="#全国电影票房管理系统" class="headerlink" title="全国电影票房管理系统"></a>全国电影票房管理系统</h3><p>对全国所有影票实施每张影票的实时上报和实时核验，同时对影院、网售商的每日合报数据进行交叉校验、统计分析，实现准实时票房偷漏瞒报的稽查，对公众提供影票二维码扫描实时验真服务，对管理部门提供数据统计分析服务，对第三方提供数据接口服务，以及业务管理需要的软件备案和巡检等辅助功能等。</p>
-<p>主要负责推动Openstack云平台、Hadoop大数据平台、微服务架构平台、数据接入网关集群平台、数据服务平台、运维支撑平台的建设，以及业务需求梳理、业务拆分和实现框架的开发与构建。</p>
-<p>项目在向微服务互联网架构推进过程中，一度面临不少困难，团队成员传统观念比较重，原有基于Oracle的关系型老平台对需求和架构设计的影响也比较大，团队人员对Openstack、Hadoop、微服务这些新架构新概念存在一定的未知恐惧心理等一系列问题，对项目前期的推进造成了不小的困扰。</p>
-<p>随着项目的推进，通过合理优化业务，基于MDD思想优化拆分业务集群范围，逐渐形成了清晰有效的业务集群架构，理顺了业务组件关系和数据关系。技术和性能上，采用Flume缓冲上报数据实现异构集群处理能力，提升峰值压力下系统的有效处理能力；引入Hazelcast实现集群间分布式数据缓存、异步数据读写、分布式数据处理的能力，有效简化集群间的数据耦合和业务分离的技术实现；基于业务需求合理采用Hadoop组件，充分利用HBase随机读写能力和Impala的数据分析与类SQL的数据操作能力，简化业务对大数据的操作复杂度，同时保障数据的一致性、有效性和时效性。</p>
-<p>最终项目超越了原有Oracle集群的业务处理能力，成功上线运行。在百亿数据的基础上，每日一亿的上报数据量，实现了影票数据的实时查询和核验，报表数据的准实时处理与查询能力；对于上报数据的核心处理能力达到了2万每秒的设计指标。</p>
-<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume、Netty、Hazelcast、MySQL + Hadoop + HBase + Impala、ArgularJS + Bootstrape、Openstack、APP（Android + iOS）、C#、Socket协议、微信公众号、数据服务网关</p>
-<h3 id="车联网平台"><a href="#车联网平台" class="headerlink" title="车联网平台"></a>车联网平台</h3><p>这个项目包括车联网管理平台、分时租赁平台、互联网车辆营销平台三个板块的业务。车联网管理平台通过对接TSP或直接对接车辆TBOX实现车辆的联网，对车联设备提供各类增值服务；分时租赁平台是在车联网平台的基础上，实现专车、分时租赁、机构用车等多种分时用车的服务；互联网车辆营销平台是基于传统4S点的汽车销售模式，基于互联网营销模式构建的新型车辆销售模式，提供潜客拓展、售前服务、预约用车、销售服务、售后服务等功能。</p>
-<p>主要负责推动车联网平台的微服务云架构技术路线和实现框架，协助完成微服务框架的构建和项目功能实现，支撑车联网云平台、分时租赁、互联网车辆营销等系列产品的开发、上线和运营。</p>
-<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume、Netty、Redis、MySQL、ArgularJS + Bootstrape、APP（Android + iOS）、Socket协议</p>
-<h3 id="IM支撑平台"><a href="#IM支撑平台" class="headerlink" title="IM支撑平台"></a>IM支撑平台</h3><p>项目主要以自主研发IM通信框架为基础，实现类微信的社群功能，并在其基础上，延伸办公、政务等业务功能，通过前端类微信APP界面实现互联网办公自动化的业务需求。同时还实现了多租户SaaS的功能和部署管理平台，以及第三方认证、外部服务对接等多种模块化整合框架。</p>
-<p>主导IM基础支撑平台的架构设计和技术研发，协助IM支撑平台业务应用化场景的设计和推广实施。主要参与IM平台通讯协议、微服务架构应用架构、多租户应用架构的设计与开发。</p>
-<p><strong>涉及技术：</strong>Java + Spring MVC + Spring Boot、Spring JPA + Hibernate、Flume、Netty、Redis、MySQL、ArgularJS + Bootstrape、APP（Android + iOS）、C#、Socket协议、SaaS框架设计</p>
-<h2 id="大连华信-（-2011年4月-2016年3月-，云业务部经理）"><a href="#大连华信-（-2011年4月-2016年3月-，云业务部经理）" class="headerlink" title="大连华信 （ 2011年4月 ~ 2016年3月 ，云业务部经理）"></a>大连华信 （ 2011年4月 ~ 2016年3月 ，云业务部经理）</h2><h3 id="IaaS云平台研发"><a href="#IaaS云平台研发" class="headerlink" title="IaaS云平台研发"></a>IaaS云平台研发</h3><p>主导构建云计算研发团队，组织产品调研和选型，基于Openstack二次开发构建了DHC-IaaS平台，实现自动化云平台部署、运营、运维和管理功能，成功承担公司云数据中心和大连云的构建运营工作。</p>
-<p><strong>涉及技术：</strong> Openstack、Linux、KVM、Ceph/GlusterFS、OpenVSwitch、Docker、Java + Spring MVC、Spring JPA + Hibernate、EHcache、MySQL、JQuery、Redmine</p>
-<h2 id="日本Infosea-（-2006年4月-2011年3月-）"><a href="#日本Infosea-（-2006年4月-2011年3月-）" class="headerlink" title="日本Infosea （ 2006年4月 ~ 2011年3月 ）"></a>日本Infosea （ 2006年4月 ~ 2011年3月 ）</h2><h3 id="日本某电信研究院SAML安全平台研发"><a href="#日本某电信研究院SAML安全平台研发" class="headerlink" title="日本某电信研究院SAML安全平台研发"></a>日本某电信研究院SAML安全平台研发</h3><p>负责日本某电信研究院SAML安全平台产品的研发、维护，持续跟进SAML安全规范，整合Open-ID、OAuth等新型主流认证和授权协议，以及产品衍生的外围项目集成、实施工作。</p>
-<p><strong>涉及技术：</strong> SAML、Open-ID、OAuth、Java、Structs、PostgreSQL、RSA Security、CA、Linux</p>
-<h2 id="埃森哲-大连-（-2003年3月-2006年3月-）"><a href="#埃森哲-大连-（-2003年3月-2006年3月-）" class="headerlink" title="埃森哲-大连 （ 2003年3月 ~ 2006年3月 ）"></a>埃森哲-大连 （ 2003年3月 ~ 2006年3月 ）</h2><h3 id="美国某信用公司Mainframe到Linux系统迁移"><a href="#美国某信用公司Mainframe到Linux系统迁移" class="headerlink" title="美国某信用公司Mainframe到Linux系统迁移"></a>美国某信用公司Mainframe到Linux系统迁移</h3><p>负责制定从Mainframe到Linux的迁移技术路线、POC目标、迁移计划、验证方案等。主要涉及Mainframe的C++到Linux C++的移植，Mainframe的JCL到Linux的Shell转换，以及数据格式的必要转换。</p>
-<p>整个工作的主要困难在于迁移规则的制定、验证和提升工作方法的效率上，以及既有系统的既存BUG，随着迁移验证的完整测试，也需要发现、记录和修正；另外一方面来自于最终客户的业务团队和Offshore的技术团队的工作时间和工作方法上，也存在不少挑战；最终项目超出客户预期完成了迁移工作，得到了最终客户和公司内部的高度评价。</p>
-<p><strong>涉及技术：</strong> JCL、Shell、C++、Linux、XML、Java、SyncSort</p>
-<h3 id="南方某市国税EAI系统"><a href="#南方某市国税EAI系统" class="headerlink" title="南方某市国税EAI系统"></a>南方某市国税EAI系统</h3><p>负责同战略咨询一起研讨业务路线，制定EAI的技术路线，并负责核心技术模块的开发和实施，完成国税、银行、国库、企业的信息化集成。</p>
-<p><strong>涉及技术：</strong>Java、Structs、Oracle、Socket通信、MQ、HTML、JavaScript</p>
-<h3 id="某证券公司COBOL到C的移植项目"><a href="#某证券公司COBOL到C的移植项目" class="headerlink" title="某证券公司COBOL到C的移植项目"></a>某证券公司COBOL到C的移植项目</h3><p>负责某证券公司COBOL移植到C的技术路线选择和工具开发，以及移植工作的计划的推进。主要基于JavaCC和JTB对COBOL代码进行解析，生成中间成果语法树，再通过语法树信息结合项目特定需求模式，生成目标C代码供人工审阅修订，提升移植效率。</p>
-<p><strong>涉及技术：</strong>COBOL、C、VC、GCC、JavaCC、JTB、Java</p>
-<h2 id="大连华信-（1999年3月-2003年2月-）"><a href="#大连华信-（1999年3月-2003年2月-）" class="headerlink" title="大连华信 （1999年3月 ~ 2003年2月 ）"></a>大连华信 （1999年3月 ~ 2003年2月 ）</h2><h3 id="大连医疗保险实时结算系统"><a href="#大连医疗保险实时结算系统" class="headerlink" title="大连医疗保险实时结算系统"></a>大连医疗保险实时结算系统</h3><p>主导设计了三层分布式实时医疗保险结算体系，通过研发内存数据操作体系、分布式交易事务保障体系等，实现了远程实时内存级别的保险结算业务，以及同后端Oracle传统业务系统间的数据交互与同步机制的实现。</p>
-<p>该项目创造了国内同行业的技术创新，其核心实时结算架构从2000年底稳定运行至今。</p>
-<p><strong>涉及技术：</strong> C++、VC、Linux、Unix、Socket通信、内存数据存储与交易处理</p>
-<hr>
-<h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><p>以下均为我熟练使用的技能</p>
-<ul>
-<li>后端开发：Java + Spring MVC + Spring Boot + Spring Cloud、Spring JPA + Hibernate、Flume/Kafaka、Netty、Hazelcast/Redis</li>
-<li>数据库：MySQL、Oracle、PostgeSQL、H2、SQLLite</li>
-<li>大数据：Hadoop、HBase、Impala、Hive、Spark、Hue</li>
-<li>前端框架：Bootstrap、AngularJS、ReactJS、JQuery、AntD、Vue</li>
-<li>云平台技术： Openstack、Docker、Linux、KVM、OpenVSwitch、Ceph、GlusterFS、主流云平台（阿里云等）</li>
-<li>项目开发配置： SVN、Git、Redmine、Gitlab、Maven、Jenkins、Sonar</li>
-<li>其他开发语言： C++、Swift、Go、Python</li>
-<li>其他开发能力： MDD设计、Restful接口设计、微服务架构设计、大数据应用架构设计、SaaS应用框架设计、Socket通信协议设计、数据服务网关设计、安全认证集成</li>
-</ul>
-<hr>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢您的时间，期待有机会与您共事。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2549,7 +2531,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2584,7 +2566,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2655,7 +2641,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">27</span>
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
